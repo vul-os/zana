@@ -2755,6 +2755,15 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Type" ""
+			(at 236.22 107.95 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "7d92bbc6-16ce-43ee-bb48-4fc003652a0f")
 		)
@@ -2825,6 +2834,15 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Type" ""
+			(at 182.88 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "49e1a0ee-cb6b-43d1-869f-5db51d66c0cd")
 		)
@@ -2887,6 +2905,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 165.1 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
 			(at 165.1 129.54 0)
 			(effects
 				(font
@@ -2994,7 +3021,7 @@
 				)
 			)
 		)
-		(property "Value" "LM393"
+		(property "Value" "LM358"
 			(at 236.22 59.69 0)
 			(effects
 				(font
@@ -3021,6 +3048,15 @@
 			)
 		)
 		(property "Description" "Low-Power, Low-Offset Voltage, Dual Comparators, DIP-8/SOIC-8/TO-99-8"
+			(at 236.22 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
 			(at 236.22 67.31 0)
 			(effects
 				(font
@@ -3115,6 +3151,15 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Type" ""
+			(at 111.76 78.74 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "30e6fa7b-b48c-4bc4-beb9-3105c7f0aefd")
 		)
@@ -3185,6 +3230,15 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Type" ""
+			(at 38.1 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "5b59ef3f-2ac9-4f3f-9494-85dd9c6d48dd")
 		)
@@ -3247,6 +3301,15 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 38.1 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
 			(at 38.1 118.11 0)
 			(effects
 				(font
@@ -3391,6 +3454,15 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Type" ""
+			(at 270.51 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "7b4f3029-2363-44b8-9600-12851b435998")
 		)
@@ -3522,6 +3594,15 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 147.32 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
 			(at 147.32 86.36 0)
 			(effects
 				(font
@@ -3731,6 +3812,15 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Type" ""
+			(at 137.16 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "6fd95a75-2ea5-4e11-a604-9d674e6b390e")
 		)
@@ -3792,6 +3882,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 200.66 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
 			(at 200.66 74.93 0)
 			(effects
 				(font
@@ -3934,6 +4033,15 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Type" ""
+			(at 113.03 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "97145e67-e867-43b3-8d69-c0f2d4a940e4")
 		)
@@ -4020,6 +4128,15 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Type" ""
+			(at 130.81 62.23 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "1399fe6c-8a5e-4c8e-af6d-723c3e43add8")
 		)
@@ -4081,6 +4198,15 @@
 		)
 		(property "Description" "Resistor"
 			(at 64.77 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 64.77 59.69 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4150,6 +4276,15 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 86.36 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
 			(at 86.36 73.66 0)
 			(effects
 				(font
@@ -4236,6 +4371,15 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
+			(at 191.77 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
 			(at 191.77 64.77 0)
 			(effects
 				(font
@@ -4372,6 +4516,15 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 156.21 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
 			(at 156.21 86.36 0)
 			(effects
 				(font
@@ -4646,6 +4799,15 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Type" ""
+			(at 74.93 59.69 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "9f306a63-2966-44f2-82af-935d4202409b")
 		)
@@ -4848,6 +5010,15 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Type" ""
+			(at 99.06 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "26c8605d-1d4b-4211-9289-1ad094717ac1")
 		)
@@ -4910,6 +5081,15 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 236.22 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
 			(at 236.22 93.98 0)
 			(effects
 				(font
@@ -4988,6 +5168,15 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Type" ""
+			(at 251.46 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "5bae4a56-c5b9-4b82-b277-9218793674cb")
 		)
@@ -5021,7 +5210,7 @@
 				)
 			)
 		)
-		(property "Value" "LM393"
+		(property "Value" "LM358"
 			(at 134.62 165.1 0)
 			(effects
 				(font
@@ -5056,29 +5245,38 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Type" ""
+			(at 134.62 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "4"
-			(uuid "a83599b7-a36d-49c2-af42-5bc54bacc5e2")
+			(uuid "a83599b7-a36d-49c2-af42-5bc54bacc5e3")
 		)
 		(pin "6"
-			(uuid "7df458dd-6c90-41f6-aad1-bb04d9192849")
+			(uuid "7df458dd-6c90-41f6-aad1-bb04d919284a")
 		)
 		(pin "1"
-			(uuid "931b682f-aec2-4bee-9d9d-8d8b85b25f69")
+			(uuid "931b682f-aec2-4bee-9d9d-8d8b85b25f6a")
 		)
 		(pin "7"
-			(uuid "fd5e5f7b-86a3-4027-9a1c-bf918b996e64")
+			(uuid "fd5e5f7b-86a3-4027-9a1c-bf918b996e65")
 		)
 		(pin "5"
-			(uuid "ec116afd-9c38-4050-97b7-c72c8afcd7c1")
+			(uuid "ec116afd-9c38-4050-97b7-c72c8afcd7c2")
 		)
 		(pin "2"
-			(uuid "3f11ca12-fe8a-42a8-8035-c4d4bbf13164")
+			(uuid "3f11ca12-fe8a-42a8-8035-c4d4bbf13165")
 		)
 		(pin "3"
-			(uuid "be1cd395-be24-48ba-a12d-03ebc6e679d5")
+			(uuid "be1cd395-be24-48ba-a12d-03ebc6e679d6")
 		)
 		(pin "8"
-			(uuid "e696bff9-1e26-49ce-a482-b378045881e4")
+			(uuid "e696bff9-1e26-49ce-a482-b378045881e5")
 		)
 		(instances
 			(project ""
@@ -5136,6 +5334,15 @@
 			)
 		)
 		(property "Description" "Low-Power, Dual Operational Amplifiers, DIP-8/SOIC-8/TO-99-8"
+			(at 92.71 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
 			(at 92.71 130.81 0)
 			(effects
 				(font
@@ -5223,6 +5430,15 @@
 		)
 		(property "Description" "Resistor"
 			(at 170.18 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 170.18 80.01 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5396,7 +5612,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "LM393"
+		(property "Value" "LM358"
 			(at 121.92 132.0799 0)
 			(effects
 				(font
@@ -5432,29 +5648,38 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Type" ""
+			(at 123.19 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "4"
-			(uuid "a83599b7-a36d-49c2-af42-5bc54bacc5e2")
+			(uuid "a83599b7-a36d-49c2-af42-5bc54bacc5e4")
 		)
 		(pin "6"
-			(uuid "7df458dd-6c90-41f6-aad1-bb04d9192849")
+			(uuid "7df458dd-6c90-41f6-aad1-bb04d919284b")
 		)
 		(pin "1"
-			(uuid "931b682f-aec2-4bee-9d9d-8d8b85b25f69")
+			(uuid "931b682f-aec2-4bee-9d9d-8d8b85b25f6b")
 		)
 		(pin "7"
-			(uuid "fd5e5f7b-86a3-4027-9a1c-bf918b996e64")
+			(uuid "fd5e5f7b-86a3-4027-9a1c-bf918b996e66")
 		)
 		(pin "5"
-			(uuid "ec116afd-9c38-4050-97b7-c72c8afcd7c1")
+			(uuid "ec116afd-9c38-4050-97b7-c72c8afcd7c3")
 		)
 		(pin "2"
-			(uuid "3f11ca12-fe8a-42a8-8035-c4d4bbf13164")
+			(uuid "3f11ca12-fe8a-42a8-8035-c4d4bbf13166")
 		)
 		(pin "3"
-			(uuid "be1cd395-be24-48ba-a12d-03ebc6e679d5")
+			(uuid "be1cd395-be24-48ba-a12d-03ebc6e679d7")
 		)
 		(pin "8"
-			(uuid "e696bff9-1e26-49ce-a482-b378045881e4")
+			(uuid "e696bff9-1e26-49ce-a482-b378045881e6")
 		)
 		(instances
 			(project ""
@@ -5512,6 +5737,15 @@
 			)
 		)
 		(property "Description" "Inductor"
+			(at 54.61 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
 			(at 54.61 68.58 0)
 			(effects
 				(font
@@ -5646,6 +5880,15 @@
 			)
 		)
 		(property "Description" "Low-Power, Dual Operational Amplifiers, DIP-8/SOIC-8/TO-99-8"
+			(at 170.18 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
 			(at 170.18 64.77 0)
 			(effects
 				(font
@@ -5800,6 +6043,15 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 213.36 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
 			(at 213.36 76.2 0)
 			(effects
 				(font

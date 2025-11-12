@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>/home/imran/Documents/botkorp-mono/mowbot/PCB/EMF_SENSOR_DIP/EMF_SENSOR.kicad_sch</source>
+    <date>2025-10-24T11:14:37+0200</date>
+    <tool>Eeschema 9.0.2-9.0.2-0~ubuntu22.04.1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>EMF_SENSOR.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C1">
+      <value>100nF</value>
+      <footprint>IMRANS_LIBRARY:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <description>Unpolarized capacitor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:C_Disc_D3.0mm_W1.6mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description">Unpolarized capacitor</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b04975c5-31ad-421e-a71a-25504cbb9fd5</tstamps>
+    </comp>
+    <comp ref="C2">
+      <value>10uF</value>
+      <footprint>IMRANS_LIBRARY:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <description>Unpolarized capacitor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:C_Disc_D3.0mm_W1.6mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description">Unpolarized capacitor</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0761e2e4-c555-4d56-b8ee-8469caad0456</tstamps>
+    </comp>
+    <comp ref="C3">
+      <value>100nF (104)</value>
+      <footprint>IMRANS_LIBRARY:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <description>Unpolarized capacitor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:C_Disc_D3.0mm_W1.6mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description">Unpolarized capacitor</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>5b1936ec-37bc-4536-9aae-f1d153f056ca</tstamps>
+    </comp>
+    <comp ref="C4">
+      <value>10uF</value>
+      <footprint>IMRANS_LIBRARY:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <description>Unpolarized capacitor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:C_Disc_D3.0mm_W1.6mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description">Unpolarized capacitor</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>05c81474-83fb-400e-9642-794430bd211e</tstamps>
+    </comp>
+    <comp ref="C5">
+      <value>1nF</value>
+      <footprint>IMRANS_LIBRARY:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <description>Unpolarized capacitor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:C_Disc_D3.0mm_W1.6mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description">Unpolarized capacitor</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>628c80d5-a934-4402-8ebe-bed4dfb07796</tstamps>
+    </comp>
+    <comp ref="C6">
+      <value>0.01uF</value>
+      <footprint>IMRANS_LIBRARY:C_Disc_D3.0mm_W1.6mm_P2.50mm</footprint>
+      <description>Unpolarized capacitor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:C_Disc_D3.0mm_W1.6mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description">Unpolarized capacitor</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>52d8f40e-2150-4d55-9273-7648a8232feb</tstamps>
+    </comp>
+    <comp ref="D1">
+      <value>1N4007</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Diode</description>
+      <fields>
+        <field name="Sim.Device">D</field>
+        <field name="Sim.Pins">1=K 2=A</field>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Diode</field>
+      </fields>
+      <libsource lib="Device" part="D" description="Diode"/>
+      <property name="Sim.Device" value="D"/>
+      <property name="Sim.Pins" value="1=K 2=A"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="diode"/>
+      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>804a8a7e-b758-4454-9469-f245874bea38</tstamps>
+    </comp>
+    <comp ref="D2">
+      <value>1N5819</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Diode</description>
+      <fields>
+        <field name="Sim.Device">D</field>
+        <field name="Sim.Pins">1=K 2=A</field>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Diode</field>
+      </fields>
+      <libsource lib="Device" part="D" description="Diode"/>
+      <property name="Sim.Device" value="D"/>
+      <property name="Sim.Pins" value="1=K 2=A"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="diode"/>
+      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>03f26705-0a35-49da-b0f4-c448f7548051</tstamps>
+    </comp>
+    <comp ref="J1">
+      <value>Conn_01x03_Pin</value>
+      <footprint>IMRANS_LIBRARY:PinHeader_1x03_P2.54mm_Vertical</footprint>
+      <description>Generic connector, single row, 01x03, script generated</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:PinHeader_1x03_P2.54mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description">Generic connector, single row, 01x03, script generated</field>
+      </fields>
+      <libsource lib="Connector" part="Conn_01x03_Pin" description="Generic connector, single row, 01x03, script generated"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="connector"/>
+      <property name="ki_fp_filters" value="Connector*:*_1x??_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1dea96db-85f8-46f9-bafa-6d61ceaf595f</tstamps>
+    </comp>
+    <comp ref="L1">
+      <value>L</value>
+      <footprint>Inductor_THT:L_Radial_D10.0mm_P5.00mm_Fastron_07M</footprint>
+      <description>Inductor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">Inductor_THT:L_Radial_D10.0mm_P5.00mm_Fastron_07M</field>
+        <field name="Datasheet"/>
+        <field name="Description">Inductor</field>
+      </fields>
+      <libsource lib="Device" part="L" description="Inductor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="inductor choke coil reactor magnetic"/>
+      <property name="ki_fp_filters" value="Choke_* *Coil* Inductor_* L_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>eafbcb38-7493-4279-8c51-ff5e0267e87d</tstamps>
+    </comp>
+    <comp ref="R1">
+      <value>10k</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Resistor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0de5d762-76a2-4933-a3ec-d929ef0fdabc</tstamps>
+    </comp>
+    <comp ref="R2">
+      <value>10k</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Resistor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>137261bf-7195-495e-a072-83ab8f6748fd</tstamps>
+    </comp>
+    <comp ref="R3">
+      <value>220</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Resistor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>648da655-0bae-4888-a7e6-86b80ed7369b</tstamps>
+    </comp>
+    <comp ref="R4">
+      <value>1M</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Resistor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0db87659-2bcb-41fa-8f96-9a20e0963a62</tstamps>
+    </comp>
+    <comp ref="R5">
+      <value>1K</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Resistor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>bb91ea69-93e9-4111-b927-a8ef4ee43be0</tstamps>
+    </comp>
+    <comp ref="R6">
+      <value>100K</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Resistor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>bd6b6bd0-0a1e-4395-9769-99f3faf946e7</tstamps>
+    </comp>
+    <comp ref="R7">
+      <value>10K</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Resistor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>70acaba4-6733-4960-b2b4-315c9a309c67</tstamps>
+    </comp>
+    <comp ref="R8">
+      <value>1M</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Resistor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d2e278b4-8c9c-41fe-a034-fea95265dd3a</tstamps>
+    </comp>
+    <comp ref="R9">
+      <value>1K</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Resistor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ff86b8ee-74f3-4a94-99a9-0d7c936adf4a</tstamps>
+    </comp>
+    <comp ref="R10">
+      <value>10K</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Resistor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8cd927f7-cb40-4f91-96b1-ef75b62650c3</tstamps>
+    </comp>
+    <comp ref="R11">
+      <value>10K</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Resistor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>359e1858-c92a-4fed-8aef-37711e68af38</tstamps>
+    </comp>
+    <comp ref="R12">
+      <value>100K</value>
+      <footprint>IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</footprint>
+      <description>Resistor</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">IMRANS_LIBRARY:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_2</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>be6d5084-0324-40e3-b8d3-5f9ffc1135bb</tstamps>
+    </comp>
+    <comp ref="U1">
+      <value>LM358</value>
+      <footprint>Package_DIP:DIP-8_W7.62mm_Socket_LongPads</footprint>
+      <datasheet>http://www.ti.com/lit/ds/symlink/lm2904-n.pdf</datasheet>
+      <description>Low-Power, Dual Operational Amplifiers, DIP-8/SOIC-8/TO-99-8</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">Package_DIP:DIP-8_W7.62mm_Socket_LongPads</field>
+        <field name="Datasheet">http://www.ti.com/lit/ds/symlink/lm2904-n.pdf</field>
+        <field name="Description">Low-Power, Dual Operational Amplifiers, DIP-8/SOIC-8/TO-99-8</field>
+      </fields>
+      <libsource lib="Amplifier_Operational" part="LM358" description="Low-Power, Dual Operational Amplifiers, DIP-8/SOIC-8/TO-99-8"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="dual opamp"/>
+      <property name="ki_fp_filters" value="SOIC*3.9x4.9mm*P1.27mm* DIP*W7.62mm* TO*99* OnSemi*Micro8* TSSOP*3x3mm*P0.65mm* TSSOP*4.4x3mm*P0.65mm* MSOP*3x3mm*P0.65mm* SSOP*3.9x4.9mm*P0.635mm* LFCSP*2x2mm*P0.5mm* *SIP* SOIC*5.3x6.2mm*P1.27mm*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c4b3281a-d852-4ec4-aa13-fd3da94a69a2 ee098b61-1351-4047-afca-3c856be8b17b 5db193a9-41e3-41ff-9151-59cfb5847669</tstamps>
+    </comp>
+    <comp ref="U2">
+      <value>LM358</value>
+      <footprint>Package_DIP:DIP-8_W7.62mm_Socket_LongPads</footprint>
+      <datasheet>http://www.ti.com/lit/ds/symlink/lm393.pdf</datasheet>
+      <description>Low-Power, Low-Offset Voltage, Dual Comparators, DIP-8/SOIC-8/TO-99-8</description>
+      <fields>
+        <field name="Sim.Type"/>
+        <field name="Footprint">Package_DIP:DIP-8_W7.62mm_Socket_LongPads</field>
+        <field name="Datasheet">http://www.ti.com/lit/ds/symlink/lm393.pdf</field>
+        <field name="Description">Low-Power, Low-Offset Voltage, Dual Comparators, DIP-8/SOIC-8/TO-99-8</field>
+      </fields>
+      <libsource lib="Comparator" part="LM393" description="Low-Power, Low-Offset Voltage, Dual Comparators, DIP-8/SOIC-8/TO-99-8"/>
+      <property name="Sim.Type" value=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="EMF_SENSOR.kicad_sch"/>
+      <property name="ki_keywords" value="cmp open collector"/>
+      <property name="ki_fp_filters" value="SOIC*3.9x4.9mm*P1.27mm* DIP*W7.62mm* SOP*5.28x5.23mm*P1.27mm* VSSOP*3x3mm*P0.65mm* TSSOP*4.4x3mm*P0.65mm*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>eab4a0c0-5bc9-49ec-9211-e0cf1f7d8896 bebe32a1-ad58-4a7d-b137-4bd4b51e0c5c 0bf64a86-d7e4-4209-9d19-b3345c31eea9</tstamps>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Amplifier_Operational" part="LM358">
+      <description>Low-Power, Dual Operational Amplifiers, DIP-8/SOIC-8/TO-99-8</description>
+      <docs>http://www.ti.com/lit/ds/symlink/lm2904-n.pdf</docs>
+      <footprints>
+        <fp>SOIC*3.9x4.9mm*P1.27mm*</fp>
+        <fp>DIP*W7.62mm*</fp>
+        <fp>TO*99*</fp>
+        <fp>OnSemi*Micro8*</fp>
+        <fp>TSSOP*3x3mm*P0.65mm*</fp>
+        <fp>TSSOP*4.4x3mm*P0.65mm*</fp>
+        <fp>MSOP*3x3mm*P0.65mm*</fp>
+        <fp>SSOP*3.9x4.9mm*P0.635mm*</fp>
+        <fp>LFCSP*2x2mm*P0.5mm*</fp>
+        <fp>*SIP*</fp>
+        <fp>SOIC*5.3x6.2mm*P1.27mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LM358</field>
+        <field name="Footprint"/>
+        <field name="Datasheet">http://www.ti.com/lit/ds/symlink/lm2904-n.pdf</field>
+        <field name="Description">Low-Power, Dual Operational Amplifiers, DIP-8/SOIC-8/TO-99-8</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="output"/>
+        <pin num="2" name="-" type="input"/>
+        <pin num="3" name="+" type="input"/>
+        <pin num="4" name="V-" type="power_in"/>
+        <pin num="5" name="+" type="input"/>
+        <pin num="6" name="-" type="input"/>
+        <pin num="7" name="" type="output"/>
+        <pin num="8" name="V+" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Comparator" part="LM393">
+      <description>Low-Power, Low-Offset Voltage, Dual Comparators, DIP-8/SOIC-8/TO-99-8</description>
+      <docs>http://www.ti.com/lit/ds/symlink/lm393.pdf</docs>
+      <footprints>
+        <fp>SOIC*3.9x4.9mm*P1.27mm*</fp>
+        <fp>DIP*W7.62mm*</fp>
+        <fp>SOP*5.28x5.23mm*P1.27mm*</fp>
+        <fp>VSSOP*3x3mm*P0.65mm*</fp>
+        <fp>TSSOP*4.4x3mm*P0.65mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LM393</field>
+        <field name="Footprint"/>
+        <field name="Datasheet">http://www.ti.com/lit/ds/symlink/lm393.pdf</field>
+        <field name="Description">Low-Power, Low-Offset Voltage, Dual Comparators, DIP-8/SOIC-8/TO-99-8</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="open_collector"/>
+        <pin num="2" name="-" type="input"/>
+        <pin num="3" name="+" type="input"/>
+        <pin num="4" name="V-" type="power_in"/>
+        <pin num="5" name="+" type="input"/>
+        <pin num="6" name="-" type="input"/>
+        <pin num="7" name="" type="open_collector"/>
+        <pin num="8" name="V+" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Conn_01x03_Pin">
+      <description>Generic connector, single row, 01x03, script generated</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x03_Pin</field>
+        <field name="Footprint"/>
+        <field name="Datasheet">~</field>
+        <field name="Description">Generic connector, single row, 01x03, script generated</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C">
+      <description>Unpolarized capacitor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+        <field name="Footprint"/>
+        <field name="Datasheet">~</field>
+        <field name="Description">Unpolarized capacitor</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="D">
+      <description>Diode</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TO-???*</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D</field>
+        <field name="Footprint"/>
+        <field name="Datasheet">~</field>
+        <field name="Description">Diode</field>
+        <field name="Sim.Device">D</field>
+        <field name="Sim.Pins">1=K 2=A</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="L">
+      <description>Inductor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Choke_*</fp>
+        <fp>*Coil*</fp>
+        <fp>Inductor_*</fp>
+        <fp>L_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">L</field>
+        <field name="Value">L</field>
+        <field name="Footprint"/>
+        <field name="Datasheet">~</field>
+        <field name="Description">Inductor</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet">~</field>
+        <field name="Description">Resistor</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Amplifier_Operational">
+      <uri>/usr/share/kicad/symbols//Amplifier_Operational.kicad_sym</uri>
+    </library>
+    <library logical="Comparator">
+      <uri>/usr/share/kicad/symbols//Comparator.kicad_sym</uri>
+    </library>
+    <library logical="Connector">
+      <uri>/usr/share/kicad/symbols//Connector.kicad_sym</uri>
+    </library>
+    <library logical="Device">
+      <uri>/usr/share/kicad/symbols//Device.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="GND" class="Default">
+      <node ref="C2" pin="1" pintype="passive"/>
+      <node ref="J1" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="R1" pin="2" pintype="passive"/>
+      <node ref="U1" pin="4" pinfunction="V-" pintype="power_in"/>
+      <node ref="U2" pin="4" pinfunction="V-" pintype="power_in"/>
+    </net>
+    <net code="2" name="GNDREF" class="Default">
+      <node ref="C3" pin="1" pintype="passive"/>
+      <node ref="C4" pin="1" pintype="passive"/>
+      <node ref="C6" pin="1" pintype="passive"/>
+      <node ref="D2" pin="1" pinfunction="K" pintype="passive"/>
+      <node ref="L1" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R1" pin="1" pintype="passive"/>
+      <node ref="R10" pin="1" pintype="passive"/>
+      <node ref="R11" pin="1" pintype="passive"/>
+      <node ref="R2" pin="2" pintype="passive"/>
+      <node ref="R5" pin="1" pintype="passive"/>
+      <node ref="R7" pin="1" pintype="passive"/>
+      <node ref="R9" pin="1" pintype="passive"/>
+    </net>
+    <net code="3" name="Net-(C1-Pad1)" class="Default">
+      <node ref="C1" pin="1" pintype="passive"/>
+      <node ref="R3" pin="2" pintype="passive"/>
+    </net>
+    <net code="4" name="Net-(C5-Pad1)" class="Default">
+      <node ref="C5" pin="1" pintype="passive"/>
+      <node ref="R4" pin="2" pintype="passive"/>
+      <node ref="U1" pin="1" pintype="output"/>
+    </net>
+    <net code="5" name="Net-(D1-A)" class="Default">
+      <node ref="D1" pin="2" pinfunction="A" pintype="passive"/>
+      <node ref="R8" pin="2" pintype="passive"/>
+      <node ref="U1" pin="7" pintype="output"/>
+    </net>
+    <net code="6" name="Net-(D1-K)" class="Default">
+      <node ref="C3" pin="2" pintype="passive"/>
+      <node ref="D1" pin="1" pinfunction="K" pintype="passive"/>
+      <node ref="R9" pin="2" pintype="passive"/>
+      <node ref="U2" pin="3" pinfunction="+" pintype="input"/>
+    </net>
+    <net code="7" name="Net-(D2-A)" class="Default">
+      <node ref="D2" pin="2" pinfunction="A" pintype="passive"/>
+      <node ref="R6" pin="1" pintype="passive"/>
+      <node ref="U2" pin="2" pinfunction="-" pintype="input"/>
+    </net>
+    <net code="8" name="Net-(J1-Pin_1)" class="Default">
+      <node ref="J1" pin="1" pinfunction="Pin_1" pintype="passive"/>
+      <node ref="R12" pin="1" pintype="passive"/>
+      <node ref="U2" pin="1" pintype="open_collector"/>
+    </net>
+    <net code="9" name="Net-(L1-Pad1)" class="Default">
+      <node ref="L1" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R3" pin="1" pintype="passive"/>
+    </net>
+    <net code="10" name="Net-(U1A-+)" class="Default">
+      <node ref="C1" pin="2" pintype="passive"/>
+      <node ref="R7" pin="2" pintype="passive"/>
+      <node ref="U1" pin="3" pinfunction="+" pintype="input"/>
+    </net>
+    <net code="11" name="Net-(U1A--)" class="Default">
+      <node ref="R4" pin="1" pintype="passive"/>
+      <node ref="R5" pin="2" pintype="passive"/>
+      <node ref="U1" pin="2" pinfunction="-" pintype="input"/>
+    </net>
+    <net code="12" name="Net-(U1B-+)" class="Default">
+      <node ref="C5" pin="2" pintype="passive"/>
+      <node ref="C6" pin="2" pintype="passive"/>
+      <node ref="R11" pin="2" pintype="passive"/>
+      <node ref="U1" pin="5" pinfunction="+" pintype="input"/>
+    </net>
+    <net code="13" name="Net-(U1B--)" class="Default">
+      <node ref="R10" pin="2" pintype="passive"/>
+      <node ref="R8" pin="1" pintype="passive"/>
+      <node ref="U1" pin="6" pinfunction="-" pintype="input"/>
+    </net>
+    <net code="14" name="VCC" class="Default">
+      <node ref="C2" pin="2" pintype="passive"/>
+      <node ref="C4" pin="2" pintype="passive"/>
+      <node ref="J1" pin="3" pinfunction="Pin_3" pintype="passive"/>
+      <node ref="R12" pin="2" pintype="passive"/>
+      <node ref="R2" pin="1" pintype="passive"/>
+      <node ref="R6" pin="2" pintype="passive"/>
+      <node ref="U1" pin="8" pinfunction="V+" pintype="power_in"/>
+      <node ref="U2" pin="8" pinfunction="V+" pintype="power_in"/>
+    </net>
+    <net code="15" name="unconnected-(U2-Pad7)" class="Default">
+      <node ref="U2" pin="7" pintype="open_collector"/>
+    </net>
+    <net code="16" name="unconnected-(U2B-+-Pad5)" class="Default">
+      <node ref="U2" pin="5" pinfunction="+" pintype="input"/>
+    </net>
+    <net code="17" name="unconnected-(U2B---Pad6)" class="Default">
+      <node ref="U2" pin="6" pinfunction="-" pintype="input"/>
+    </net>
+  </nets>
+</export>

@@ -1827,7 +1827,7 @@
 	)
 	(wire
 		(pts
-			(xy 81.28 119.38) (xy 81.28 125.73)
+			(xy 78.74 119.38) (xy 78.74 127)
 		)
 		(stroke
 			(width 0)
@@ -2087,7 +2087,7 @@
 	)
 	(wire
 		(pts
-			(xy 81.28 140.97) (xy 81.28 149.86)
+			(xy 78.74 142.24) (xy 78.74 153.67)
 		)
 		(stroke
 			(width 0)
@@ -3957,7 +3957,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 81.28 119.38 0)
+		(at 78.74 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3966,7 +3966,7 @@
 		(fields_autoplaced yes)
 		(uuid "b55a7c3c-7559-46a9-90a8-fcfb48241e02")
 		(property "Reference" "#PWR06"
-			(at 81.28 123.19 0)
+			(at 78.74 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3975,7 +3975,7 @@
 			)
 		)
 		(property "Value" "VCC"
-			(at 81.28 114.3 0)
+			(at 78.74 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3983,7 +3983,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 81.28 119.38 0)
+			(at 78.74 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3992,7 +3992,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 81.28 119.38 0)
+			(at 78.74 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4001,7 +4001,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 81.28 119.38 0)
+			(at 78.74 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4159,7 +4159,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 81.28 149.86 0)
+		(at 78.74 153.67 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4168,7 +4168,7 @@
 		(fields_autoplaced yes)
 		(uuid "bdb78eda-dfaf-4a39-a462-085ba9ce2161")
 		(property "Reference" "#PWR07"
-			(at 81.28 156.21 0)
+			(at 78.74 160.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4177,7 +4177,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 81.28 154.94 0)
+			(at 78.74 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4185,7 +4185,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 81.28 149.86 0)
+			(at 78.74 153.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4194,7 +4194,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 81.28 149.86 0)
+			(at 78.74 153.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4203,7 +4203,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 81.28 149.86 0)
+			(at 78.74 153.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4343,28 +4343,28 @@
 			)
 		)
 		(pin "1"
-			(uuid "511158c2-2483-4d0f-a234-952ff9833aa4")
+			(uuid "511158c2-2483-4d0f-a234-952ff9833aa5")
 		)
 		(pin "5"
-			(uuid "24aad051-3e37-4448-8cc2-6e103f3a6749")
+			(uuid "24aad051-3e37-4448-8cc2-6e103f3a674a")
 		)
 		(pin "4"
-			(uuid "7d96e250-ceb2-4a2b-9f07-43ae5af538ed")
+			(uuid "7d96e250-ceb2-4a2b-9f07-43ae5af538ee")
 		)
 		(pin "7"
-			(uuid "54d8c373-6423-40e1-8d47-edffc402c6c9")
+			(uuid "54d8c373-6423-40e1-8d47-edffc402c6ca")
 		)
 		(pin "8"
-			(uuid "45e9c110-a070-4686-9787-b64f4bf6490a")
+			(uuid "45e9c110-a070-4686-9787-b64f4bf6490b")
 		)
 		(pin "6"
-			(uuid "057c823b-eb59-4504-93bb-8625d05c8cee")
+			(uuid "057c823b-eb59-4504-93bb-8625d05c8cef")
 		)
 		(pin "2"
-			(uuid "c7f872e7-6cd7-4bc6-b855-af54c5b63573")
+			(uuid "c7f872e7-6cd7-4bc6-b855-af54c5b63574")
 		)
 		(pin "3"
-			(uuid "3c11dad1-4f39-4887-b80b-9654f69b88ff")
+			(uuid "3c11dad1-4f39-4887-b80b-9654f69b8900")
 		)
 		(instances
 			(project ""
@@ -4565,28 +4565,28 @@
 			)
 		)
 		(pin "1"
-			(uuid "511158c2-2483-4d0f-a234-952ff9833aa4")
+			(uuid "511158c2-2483-4d0f-a234-952ff9833aa6")
 		)
 		(pin "5"
-			(uuid "24aad051-3e37-4448-8cc2-6e103f3a6749")
+			(uuid "24aad051-3e37-4448-8cc2-6e103f3a674b")
 		)
 		(pin "4"
-			(uuid "7d96e250-ceb2-4a2b-9f07-43ae5af538ed")
+			(uuid "7d96e250-ceb2-4a2b-9f07-43ae5af538ef")
 		)
 		(pin "7"
-			(uuid "54d8c373-6423-40e1-8d47-edffc402c6c9")
+			(uuid "54d8c373-6423-40e1-8d47-edffc402c6cb")
 		)
 		(pin "8"
-			(uuid "45e9c110-a070-4686-9787-b64f4bf6490a")
+			(uuid "45e9c110-a070-4686-9787-b64f4bf6490c")
 		)
 		(pin "6"
-			(uuid "057c823b-eb59-4504-93bb-8625d05c8cee")
+			(uuid "057c823b-eb59-4504-93bb-8625d05c8cf0")
 		)
 		(pin "2"
-			(uuid "c7f872e7-6cd7-4bc6-b855-af54c5b63573")
+			(uuid "c7f872e7-6cd7-4bc6-b855-af54c5b63575")
 		)
 		(pin "3"
-			(uuid "3c11dad1-4f39-4887-b80b-9654f69b88ff")
+			(uuid "3c11dad1-4f39-4887-b80b-9654f69b8901")
 		)
 		(instances
 			(project ""
