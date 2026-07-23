@@ -1,0 +1,19 @@
+# FreeCAD auto-backups
+*.FCBak
+*.FCStd1
+
+# KiCad caches / backups
+fp-info-cache
+*-backups/
+*.kicad_pcb-bak
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.lck
+~*
+#auto_saved_files#
+_autosave-*
+*.kicad_pcb.old
+*.kicad_pcbold*
+\#auto_saved_files\#

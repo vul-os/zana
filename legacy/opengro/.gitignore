@@ -1,0 +1,9 @@
+
+\.idea/
+
+local/
+
+# secrets / device config (added during scrub)
+.env
+.env.*
+secrets.json

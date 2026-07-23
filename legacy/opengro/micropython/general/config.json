@@ -1,0 +1,7 @@
+{
+  "version": "0.0.0",
+  "network": {
+    "ssid": "YOUR_WIFI_SSID",
+    "password": "YOUR_WIFI_PASSWORD"
+  }
+}
