@@ -1,0 +1,640 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Zana — site stylesheet. Shared by index.html and docs.html.
+
+   Art direction: THE DRAWING SHEET. Zana is an open-hardware repo whose
+   contents are FreeCAD bodies, KiCad boards and a physics model, so the site is
+   built as the document that would accompany them — drafting grid, title block,
+   dimension lines carrying real measured values, and copper artwork lifted
+   straight out of the boards. Nothing here is a stock illustration: the part
+   renders come from the tracked meshes (site/gen_renders.py) and the electrode
+   is the RAIN sensor's own copper plot, re-cut to currentColor.
+
+   Dark-first, per the brand spec. The nine spec colours are declared verbatim
+   in the SPEC block below and everything else is derived from them; no hue is
+   invented. Amber is a dark-mode accent — it fails contrast on cream — so the
+   vellum theme substitutes deep bronze, exactly as the spec directs.
+
+   Type, per the spec: Archivo 600 for the wordmark and display (industrial
+   signage grotesque — workshop, not startup), IBM Plex Sans for body and UI
+   (drawn for an engineering company, open-licensed), IBM Plex Mono for data —
+   part numbers, pin labels, revision codes, dimensions. All three are SIL OFL
+   and vendored in ./fonts; nothing is fetched from a third party, because the
+   site must render with the network unplugged.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 600; font-display: swap; src: url('./fonts/archivo-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('./fonts/ibm-plex-sans-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url('./fonts/ibm-plex-sans-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('./fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('./fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2'); }
+
+:root {
+  /* ── SPEC: the nine brand colours, verbatim ─────────────────────────── */
+  --amber:     #f2a72c;   /* marigold amber  — primary accent, dominant     */
+  --bronze:    #8f5608;   /* deep bronze     — amber for light surfaces only*/
+  --black:     #0a0b0d;   /* near-black      — page ground                  */
+  --charcoal:  #22242a;   /* warm charcoal   — cards, raised surfaces       */
+  --paper:     #f7f4ec;   /* paper           — the trace, headings          */
+  --cream:     #ece7dc;   /* cream           — body text                    */
+  --warm-grey: #8a8378;   /* warm grey       — hairlines, muted, disabled   */
+  --verdigris: #4e9b86;   /* verdigris       — secondary / info, sparingly  */
+  --oxide:     #b34a2e;   /* oxide red       — errors and destructive only  */
+
+  /* ── graphite theme (default) ───────────────────────────────────────── */
+  --accent:    var(--amber);
+  --bg:        var(--black);
+  --panel:     var(--charcoal);
+  /* Between ground and card: sunken bands and the panel's own inner face.
+     Mixed from the two spec surfaces rather than picked, so the whole stack
+     stays on the one warm axis. */
+  --bg-2:      color-mix(in srgb, var(--charcoal) 32%, var(--black));
+  --panel-2:   color-mix(in srgb, var(--charcoal) 72%, var(--black));
+  --panel-3:   color-mix(in srgb, var(--charcoal) 88%, var(--paper) 6%);
+
+  /* Hairlines are warm grey at the weight the surface can carry. */
+  --line:      color-mix(in srgb, var(--warm-grey) 20%, transparent);
+  --line-2:    color-mix(in srgb, var(--warm-grey) 34%, transparent);
+  --line-3:    color-mix(in srgb, var(--warm-grey) 52%, transparent);
+
+  /* The text ramp.
+     Warm grey is spec'd for "hairlines, muted, disabled" — it is a RULE colour,
+     and it is the one the --line-* tokens use. Set as type it measures 4.14:1
+     on the charcoal cards, which is under AA for anything below 24px, so every
+     tier that carries readable text is lifted off it toward cream until it
+     clears 4.5:1 on the worst ground it sits on (charcoal, not near-black).
+       --text-4  #a29c91  5.69:1 on charcoal
+       --text-5  #948d82  4.72:1 on charcoal
+     Raw warm grey stays where it belongs: hairlines and disabled states. */
+  --text:      var(--paper);    /* headings */
+  --text-2:    var(--cream);    /* body */
+  --text-3:    color-mix(in srgb, var(--cream) 68%, var(--warm-grey));
+  --text-4:    color-mix(in srgb, var(--cream) 25%, var(--warm-grey));
+  --text-5:    color-mix(in srgb, var(--cream) 10%, var(--warm-grey));
+  --disabled:  var(--warm-grey);
+
+  /* Label colour for a filled accent button. Amber is a light fill, so it takes
+     the near-black label — 9.69:1. (Vellum flips this; see below.) */
+  --on-accent: var(--black);
+
+  --info:      var(--verdigris);
+  --danger:    var(--oxide);
+
+  --grid-fine:   color-mix(in srgb, var(--warm-grey) 9%, transparent);
+  --grid-coarse: color-mix(in srgb, var(--warm-grey) 17%, transparent);
+
+  /* Depth is shadow only. The spec forbids gradients, glow and bevels. */
+  --shadow: 0 18px 40px -24px rgba(0,0,0,.95);
+  --shadow-lg: 0 46px 100px -46px rgba(0,0,0,1), 0 14px 36px -24px rgba(0,0,0,.8);
+
+  --display: 'Archivo', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sans: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  --r-xs: 2px; --r-sm: 4px; --r: 7px; --r-lg: 11px;
+  --max: 1200px;
+  --gut: clamp(18px, 4vw, 44px);
+  --hdr: 64px;
+  --ease: cubic-bezier(.22,.72,.18,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+}
+
+/* ── vellum theme ───────────────────────────────────────────────────────
+   The spec is dark-first and names one light-surface substitution: bronze in
+   place of amber, because amber fails contrast on cream. The same rule is
+   applied to verdigris, which fails on paper for the same reason at the same
+   ratio — that is the spec's own logic, not a new colour: hue and role are
+   unchanged, only the value is dropped for the lighter ground. */
+[data-theme="light"] {
+  --accent:    var(--bronze);
+  --bg:        var(--cream);
+  --panel:     var(--paper);
+  --bg-2:      color-mix(in srgb, var(--warm-grey) 12%, var(--cream));
+  --panel-2:   color-mix(in srgb, var(--paper) 92%, #fff);
+  --panel-3:   color-mix(in srgb, var(--warm-grey) 8%, var(--paper));
+
+  --line:      color-mix(in srgb, var(--warm-grey) 34%, transparent);
+  --line-2:    color-mix(in srgb, var(--warm-grey) 55%, transparent);
+  --line-3:    color-mix(in srgb, var(--warm-grey) 78%, transparent);
+
+  --text:      var(--black);
+  --text-2:    color-mix(in srgb, var(--black) 88%, var(--warm-grey));
+  --text-3:    color-mix(in srgb, var(--black) 62%, var(--warm-grey));
+  /* Same rule, mirrored: warm grey is only 3.41:1 on paper and 3.04:1 on cream,
+     so the readable tiers are darkened toward near-black until they clear 4.5:1
+     on the WORST light ground (cream, not paper).
+       --text-4  #5d5953  6.33:1 on paper, 5.64:1 on cream
+       --text-5  #6a655d  5.26:1 on paper, 4.69:1 on cream */
+  --text-4:    color-mix(in srgb, var(--black) 35%, var(--warm-grey));
+  --text-5:    color-mix(in srgb, var(--black) 25%, var(--warm-grey));
+  --disabled:  var(--warm-grey);
+
+  /* Bronze is a DARK fill, so the label flips to paper — 5.45:1. Near-black on
+     bronze is 3.28:1 and fails, which is the trap the amber→bronze swap sets:
+     substituting the accent without re-checking what sits on top of it. */
+  --on-accent: var(--paper);
+
+  --info:      #2f6957;   /* verdigris, dropped for a paper ground */
+  --danger:    #93341c;   /* oxide red, likewise */
+
+  --grid-fine:   color-mix(in srgb, var(--warm-grey) 20%, transparent);
+  --grid-coarse: color-mix(in srgb, var(--warm-grey) 36%, transparent);
+
+  --shadow: 0 14px 30px -22px rgba(70,58,34,.55);
+  --shadow-lg: 0 36px 80px -44px rgba(70,58,34,.5), 0 12px 30px -22px rgba(70,58,34,.35);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  scroll-padding-top: calc(var(--hdr) + 14px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  position: relative;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  transition: background .4s var(--ease), color .4s var(--ease);
+}
+
+/* The sheet: graph paper. 8 mm fine, 40 mm coarse — a real drafting grid, not
+   a decorative pattern, and it is what makes the page read as a drawing before
+   a single word is. */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, var(--grid-coarse) 0 1px, transparent 1px 200px),
+    repeating-linear-gradient(0deg,  var(--grid-coarse) 0 1px, transparent 1px 200px),
+    repeating-linear-gradient(90deg, var(--grid-fine)   0 1px, transparent 1px 40px),
+    repeating-linear-gradient(0deg,  var(--grid-fine)   0 1px, transparent 1px 40px);
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; height: auto; }
+::selection { background: color-mix(in srgb, var(--accent) 34%, transparent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: var(--r-xs); }
+
+.page { position: relative; z-index: 1; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gut); }
+
+/* ═══ type ═════════════════════════════════════════════════════════════ */
+/* Every label on a drawing is uppercase, tracked out, and small. */
+.lbl {
+  font-family: var(--mono);
+  font-size: 10.5px; font-weight: 500;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--text-4); line-height: 1;
+}
+.lbl.cu { color: var(--accent); }
+.lbl.cy { color: var(--info); }
+
+.eyebrow { display: inline-flex; align-items: center; gap: 11px; }
+.eyebrow::before {
+  content: ""; flex: none;
+  width: 9px; height: 9px; border-radius: 50%;
+  border: 2px solid var(--accent);       /* a via */
+}
+/* Flat hairline, not a fade: the spec's no-gradients rule applies to the brand
+   as a whole, and a drawing rule is drawn at one weight anyway. */
+.eyebrow::after { content: ""; width: clamp(24px, 6vw, 72px); height: 1px; background: var(--line-2); }
+
+/* Display is Archivo 600 at -0.01em, per the spec — one weight, one tracking,
+   at every size. */
+h1, h2, h3 {
+  font-family: var(--display); font-weight: 600;
+  letter-spacing: -.01em; line-height: 1.04; color: var(--text);
+}
+h1 { font-size: clamp(2.5rem, 6.4vw, 4.2rem); }
+h2 { font-size: clamp(1.8rem, 3.8vw, 2.7rem); }
+h3 { font-size: clamp(1.12rem, 2vw, 1.35rem); }
+h1 em, h2 em, h3 em { font-style: normal; color: var(--accent); }
+
+p { color: var(--text-3); }
+.lede { font-size: 1.06rem; line-height: 1.72; max-width: 64ch; color: var(--text-3); }
+.lede b, p b, li b { color: var(--text); font-weight: 600; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
+
+/* ═══ header ═══════════════════════════════════════════════════════════ */
+.hdr {
+  position: sticky; top: 0; z-index: 80; height: var(--hdr);
+  display: flex; align-items: center; gap: 14px; padding: 0 var(--gut);
+  background: color-mix(in srgb, var(--bg) 84%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--line);
+}
+/* ── the lockup ─────────────────────────────────────────────────────────
+   Spec: mark and wordmark side by side, vertically centred, gap 0.55em, mark
+   at 1.4× the cap height of the wordmark, wordmark lowercase and LIVE TEXT.
+
+   Archivo's cap height is 0.73em, so 1.4 × 0.73em = 1.022em — the mark is
+   very slightly taller than a capital, which is what the ratio is for. Both
+   the gap and the mark size are expressed in em so the whole lockup scales
+   from one font-size and can never drift out of proportion.
+
+   The mark is inlined rather than linked because the hex and the trace are
+   different colours: the hex takes the accent, the trace takes paper, and both
+   have to follow the theme. */
+.brand {
+  display: inline-flex; align-items: center; flex: none;
+  gap: .55em;
+  font-size: 20px;                      /* the lockup's one dimension */
+}
+.brand .mark { width: 1.022em; height: 1.022em; flex: none; }
+.brand .mark .hex { stroke: var(--accent); }
+.brand .mark .trace { stroke: var(--paper); }
+.brand .mark .pad { fill: var(--paper); }
+[data-theme="light"] .brand .mark .trace { stroke: var(--black); }
+[data-theme="light"] .brand .mark .pad { fill: var(--black); }
+.brand .word {
+  font-family: var(--display); font-weight: 600;
+  font-size: 1em; letter-spacing: -.01em; line-height: 1;
+  color: var(--text); text-transform: lowercase;
+}
+@media (max-width: 480px) { .brand .word { display: none; } }
+.hdr .sp { flex: 1; }
+.hdr nav { display: flex; gap: 2px; }
+.hdr nav a {
+  padding: 8px 11px; font-size: 13.5px; font-weight: 500; color: var(--text-3);
+  transition: color .18s var(--ease);
+}
+.hdr nav a:hover, .hdr nav a.on { color: var(--text); }
+@media (max-width: 900px) { .hdr nav { display: none; } }
+
+.icon-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; flex: none;
+  border: 1px solid var(--line-2); border-radius: var(--r-sm);
+  background: transparent; color: var(--text-3); cursor: pointer;
+  transition: color .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
+}
+.icon-btn:hover { color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+
+.vulos-badge {
+  display: inline-flex; align-items: center; gap: 8px; flex: none;
+  padding: 6px 12px; border: 1px solid var(--line-2); border-radius: var(--r-sm);
+  font-size: 12.5px; color: var(--text-3);
+  transition: border-color .18s var(--ease), color .18s var(--ease);
+}
+.vulos-badge:hover { border-color: var(--line-3); color: var(--text); }
+.vulos-badge img { width: 15px; height: 15px; border-radius: 3px; }
+@media (max-width: 620px) { .vulos-badge span { display: none; } }
+
+/* ═══ buttons ══════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 11px 18px; border-radius: var(--r-sm);
+  font-size: 14px; font-weight: 600; letter-spacing: .01em;
+  border: 1px solid transparent; cursor: pointer;
+  transition: transform .16s var(--ease), background .18s var(--ease), border-color .18s var(--ease), color .18s var(--ease);
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, #fff); }
+.btn-ghost { border-color: var(--line-2); color: var(--text-2); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--text); }
+
+/* ═══ sections ═════════════════════════════════════════════════════════ */
+.section { position: relative; padding: clamp(60px, 8vw, 116px) 0; scroll-margin-top: var(--hdr); }
+.section.ruled { border-top: 1px solid var(--line); }
+.section.sunk { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.head { max-width: 660px; display: flex; flex-direction: column; gap: 15px; margin-bottom: clamp(30px, 4vw, 48px); }
+
+/* PCB trace rule — a routed copper track with a via at each end, used where a
+   plain hairline would do nothing for the page. */
+.trace { display: block; width: 100%; height: 16px; color: var(--line-2); }
+.trace path { stroke: currentColor; stroke-width: 1.4; fill: none; }
+.trace circle { fill: none; stroke: currentColor; stroke-width: 1.4; }
+
+/* ═══ hero ═════════════════════════════════════════════════════════════ */
+.hero { position: relative; padding: clamp(44px, 6vw, 84px) 0 clamp(30px, 4vw, 56px); overflow: clip; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr); gap: clamp(26px, 4vw, 56px); align-items: center; }
+.hero-copy { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
+.hero .lede { font-size: 1.12rem; }
+.cta { display: flex; flex-wrap: wrap; gap: 11px; }
+@media (max-width: 940px) { .hero-grid { grid-template-columns: 1fr; } }
+
+/* the framed render + its dimension annotations */
+.plate {
+  position: relative;
+  border: 1px solid var(--line-2); border-radius: var(--r);
+  background:
+    repeating-linear-gradient(90deg, var(--grid-fine) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(0deg,  var(--grid-fine) 0 1px, transparent 1px 32px),
+    var(--panel);
+  padding: clamp(18px, 3vw, 34px);
+  box-shadow: var(--shadow-lg);
+}
+.plate.flat { box-shadow: var(--shadow); }
+/* corner fiducials — the registration marks on a drawing sheet */
+.plate::before, .plate::after {
+  content: ""; position: absolute; width: 11px; height: 11px; pointer-events: none;
+  border: 1px solid var(--accent); opacity: .55;
+}
+.plate::before { top: 7px; left: 7px; border-right: 0; border-bottom: 0; }
+.plate::after { bottom: 7px; right: 7px; border-left: 0; border-top: 0; }
+.plate img { width: 100%; }
+
+/* dimension line: a rule with arrow ticks and the measurement on it */
+.dim { position: relative; display: flex; align-items: center; gap: 10px; color: var(--info); }
+.dim::before, .dim::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: .5; }
+.dim b {
+  font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .06em;
+  white-space: nowrap; color: var(--info);
+}
+.dim.v { flex-direction: column; width: 1px; }
+.dim-row { display: flex; gap: 18px; margin-top: 14px; }
+.dim-row .dim { flex: 1; }
+
+/* ═══ title block ══════════════════════════════════════════════════════ */
+/* The corner stamp on every engineering drawing: who, what, which revision,
+   what units. Here it carries the repo's real state, so it doubles as the
+   honesty notice. */
+.titleblock {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--line-2); border-radius: var(--r-sm);
+  background: var(--panel); overflow: hidden;
+  font-family: var(--mono);
+}
+.tb { padding: 11px 13px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); min-width: 0; }
+.tb:nth-child(4n) { border-right: none; }
+.tb:nth-last-child(-n+4) { border-bottom: none; }
+.tb .k { display: block; font-size: 9.5px; letter-spacing: .15em; text-transform: uppercase; color: var(--text-5); margin-bottom: 6px; }
+.tb .v { font-size: 13px; font-weight: 500; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tb .v.cu { color: var(--accent); }
+@media (max-width: 700px) {
+  .titleblock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tb:nth-child(4n) { border-right: 1px solid var(--line); }
+  .tb:nth-child(2n) { border-right: none; }
+  .tb:nth-last-child(-n+2) { border-bottom: none; }
+  .tb:nth-last-child(-n+4):not(:nth-last-child(-n+2)) { border-bottom: 1px solid var(--line); }
+}
+
+/* ═══ state chips ══════════════════════════════════════════════════════ */
+/* Zana is prototype-stage. Every claim on this page carries the state of the
+   thing it describes, so nobody downloads a "design file" expecting firmware. */
+.chip {
+  display: inline-flex; align-items: center; gap: 7px; flex: none;
+  padding: 4px 10px; border-radius: 100px;
+  border: 1px solid var(--line-2);
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-3); white-space: nowrap;
+}
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.chip.ok { color: var(--info); border-color: color-mix(in srgb, var(--info) 42%, transparent); background: color-mix(in srgb, var(--info) 10%, transparent); }
+.chip.cad { color: var(--info); border-color: color-mix(in srgb, var(--info) 38%, transparent); background: color-mix(in srgb, var(--info) 9%, transparent); }
+.chip.raw { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); background: color-mix(in srgb, var(--accent) 9%, transparent); }
+.chip.none { color: var(--text-4); }
+
+/* ═══ inventory table ══════════════════════════════════════════════════ */
+.inv { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+.inv th {
+  text-align: left; padding: 11px 14px;
+  border-bottom: 1px solid var(--line-2);
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--text-4); white-space: nowrap;
+}
+.inv td { padding: 15px 14px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--text-3); }
+.inv tbody tr:last-child td { border-bottom: none; }
+.inv tbody tr { transition: background .15s var(--ease); }
+.inv tbody tr:hover { background: var(--panel); }
+.inv .area { color: var(--text); font-weight: 600; white-space: nowrap; }
+.inv-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--bg-2); }
+
+/* ═══ part cards ═══════════════════════════════════════════════════════ */
+.parts { display: grid; grid-template-columns: repeat(auto-fill, minmax(258px, 1fr)); gap: 16px; }
+.part {
+  display: flex; flex-direction: column;
+  border: 1px solid var(--line); border-radius: var(--r);
+  background: var(--panel); overflow: hidden;
+  transition: border-color .2s var(--ease), transform .2s var(--ease);
+}
+.part:hover { border-color: var(--accent); transform: translateY(-2px); }
+.part .fig {
+  position: relative; padding: 14px;
+  background:
+    repeating-linear-gradient(90deg, var(--grid-fine) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(0deg,  var(--grid-fine) 0 1px, transparent 1px 24px),
+    var(--bg-2);
+  border-bottom: 1px solid var(--line);
+}
+.part .fig img { width: 100%; aspect-ratio: 1; object-fit: contain; }
+.part .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
+.part .body h3 { font-size: 1.02rem; }
+.part .body p { font-size: 13px; line-height: 1.55; color: var(--text-4); flex: 1; }
+.part .spec {
+  display: flex; flex-wrap: wrap; gap: 6px 14px; padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 11px; color: var(--text-4);
+}
+.part .spec b { color: var(--info); font-weight: 500; }
+
+/* ═══ spec cards (coil options) ════════════════════════════════════════ */
+.specs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 860px) { .specs { grid-template-columns: 1fr; } }
+.spec-card {
+  position: relative;
+  border: 1px solid var(--line); border-radius: var(--r);
+  background: var(--panel); padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.spec-card.pick { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, var(--panel)); }
+.spec-card .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.spec-card .eff { display: flex; align-items: baseline; gap: 3px; }
+.spec-card .eff b { font-family: var(--mono); font-size: 34px; font-weight: 600; letter-spacing: -.04em; color: var(--text); line-height: 1; }
+.spec-card.pick .eff b { color: var(--accent); }
+.spec-card .eff i { font-style: normal; font-family: var(--mono); font-size: 16px; color: var(--text-4); }
+.spec-card dl { display: grid; grid-template-columns: auto 1fr; gap: 7px 14px; font-family: var(--mono); font-size: 12px; }
+.spec-card dt { color: var(--text-5); }
+.spec-card dd { color: var(--text-2); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ═══ electrode artwork ════════════════════════════════════════════════ */
+.electrode { color: var(--accent); width: 100%; max-width: 460px; }
+.electrode svg { width: 100%; height: auto; }
+
+/* ═══ split rows ═══════════════════════════════════════════════════════ */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(26px, 4vw, 56px); align-items: center; }
+.split.wide { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
+.split.flip > :first-child { order: 2; }
+.split .copy { display: flex; flex-direction: column; gap: 15px; align-items: flex-start; }
+@media (max-width: 900px) {
+  .split, .split.wide { grid-template-columns: 1fr; }
+  .split.flip > :first-child { order: 0; }
+}
+
+.ticks { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.ticks li { position: relative; padding-left: 24px; color: var(--text-3); font-size: 15px; line-height: 1.65; }
+.ticks li::before {
+  content: ""; position: absolute; left: 3px; top: .58em;
+  width: 8px; height: 8px; border-radius: 50%;
+  border: 2px solid var(--accent);         /* a via, again */
+}
+
+/* ═══ code ═════════════════════════════════════════════════════════════ */
+.codeblock { border: 1px solid var(--line-2); border-radius: var(--r); overflow: hidden; background: var(--bg-2); }
+.codeblock .bar {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 13px; background: var(--panel-2); border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-4);
+}
+.codeblock .bar::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none; }
+.codeblock pre { margin: 0; padding: 16px 18px; overflow-x: auto; font-family: var(--mono); font-size: 12.5px; line-height: 1.8; color: var(--text-2); }
+.codeblock .c { color: var(--text-5); }
+.codeblock .p { color: var(--accent); user-select: none; }
+
+/* ═══ steps ════════════════════════════════════════════════════════════ */
+.steps { list-style: none; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.steps li:last-child { border-bottom: none; }
+.steps li::before {
+  content: counter(s, decimal-leading-zero);
+  font-family: var(--mono); font-size: 12px; color: var(--accent); padding-top: 3px;
+}
+.steps b { display: block; font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.steps span { font-size: 14px; color: var(--text-4); line-height: 1.6; }
+
+/* ═══ cards / grid ═════════════════════════════════════════════════════ */
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 880px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+.card {
+  border: 1px solid var(--line); border-radius: var(--r); background: var(--panel);
+  padding: 20px; display: flex; flex-direction: column; gap: 10px;
+  transition: border-color .2s var(--ease), transform .2s var(--ease);
+}
+.card:hover { border-color: var(--line-3); transform: translateY(-2px); }
+.card h3 { font-size: 1.02rem; }
+.card p { font-size: 13.5px; line-height: 1.6; color: var(--text-4); }
+
+/* ═══ the standalone band ══════════════════════════════════════════════ */
+.vulos-band {
+  border: 1px solid var(--line-2); border-radius: var(--r);
+  background: var(--panel); padding: clamp(22px, 3vw, 32px);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px;
+}
+.vulos-band .txt { flex: 1 1 340px; }
+.vulos-band h3 { margin-bottom: 8px; }
+.vulos-band p { font-size: 14.5px; line-height: 1.65; }
+
+/* ═══ quick facts strip ════════════════════════════════════════════════ */
+.quick { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line-2); }
+.quick > div { padding: 15px 14px 0 0; position: relative; display: flex; flex-direction: column; gap: 7px; }
+.quick > div + div { padding-left: 18px; border-left: 1px solid var(--line); }
+.quick > div::before { content: ""; position: absolute; top: -1px; left: 0; width: 20px; height: 2px; background: var(--accent); }
+.quick b { font-family: var(--mono); font-size: clamp(18px, 2.2vw, 23px); font-weight: 600; letter-spacing: -.03em; color: var(--text); line-height: 1; }
+@media (max-width: 620px) {
+  .quick { grid-template-columns: repeat(2, 1fr); }
+  .quick > div:nth-child(3) { padding-left: 0; border-left: none; }
+  .quick > div:nth-child(n+3) { border-top: 1px solid var(--line); margin-top: 14px; padding-top: 14px; }
+}
+
+/* ═══ footer ═══════════════════════════════════════════════════════════ */
+.site-footer { border-top: 1px solid var(--line); background: var(--bg-2); }
+.foot { max-width: var(--max); margin: 0 auto; padding: clamp(38px, 5vw, 60px) var(--gut) 30px; }
+.foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: clamp(24px, 4vw, 48px); padding-bottom: 30px; border-bottom: 1px solid var(--line); }
+.foot-grid p { font-size: 13.5px; line-height: 1.65; max-width: 42ch; margin: 12px 0 0; }
+.foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-top: 13px; }
+.foot-col a { font-size: 13.5px; color: var(--text-4); transition: color .15s var(--ease); }
+.foot-col a:hover { color: var(--accent); }
+.foot-btm { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 24px; font-family: var(--mono); font-size: 11.5px; color: var(--text-5); }
+.foot-btm a { color: var(--text-4); }
+.foot-btm a:hover { color: var(--text-2); }
+@media (max-width: 700px) { .foot-grid { grid-template-columns: 1fr; } }
+
+/* ═══ reveal ═══════════════════════════════════════════════════════════ */
+.rv { opacity: 0; transform: translateY(14px); transition: opacity .6s var(--ease-out), transform .6s var(--ease-out); }
+.rv.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rv { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* ═══ docs ═════════════════════════════════════════════════════════════ */
+.docs-shell { display: grid; grid-template-columns: 250px minmax(0, 1fr); align-items: start; max-width: var(--max); margin: 0 auto; }
+.docs-nav {
+  position: sticky; top: var(--hdr); align-self: start;
+  max-height: calc(100dvh - var(--hdr)); overflow-y: auto;
+  padding: 30px 20px 40px var(--gut);
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 3px;
+}
+.docs-nav .lbl { margin-bottom: 10px; }
+.docs-nav a {
+  display: block; padding: 8px 12px; font-size: 14px; color: var(--text-3);
+  border-left: 2px solid transparent;
+  transition: color .15s var(--ease), border-color .15s var(--ease), background .15s var(--ease);
+}
+.docs-nav a:hover { color: var(--text); background: var(--panel); }
+.docs-nav a.active { color: var(--accent); border-left-color: var(--accent); }
+.docs-main { padding: clamp(28px, 4vw, 46px) var(--gut) clamp(56px, 8vw, 90px); max-width: 860px; }
+.docs-title { margin-bottom: 20px; }
+
+.markdown { font-size: 15.5px; }
+.markdown > *:first-child { margin-top: 0; }
+.markdown h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 16px; }
+.markdown h2 { font-size: clamp(1.4rem, 2.6vw, 1.85rem); margin: 40px 0 12px; padding-top: 20px; border-top: 1px solid var(--line); }
+.markdown h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+.markdown hr + h2 { border-top: none; padding-top: 0; margin-top: 22px; }
+.markdown h3 { font-size: 1.12rem; margin: 26px 0 9px; }
+.markdown h4 { font-size: .96rem; font-weight: 600; color: var(--text); margin: 20px 0 7px; }
+.markdown p { margin: 12px 0; line-height: 1.72; max-width: 74ch; }
+.markdown a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+.markdown a:hover { text-decoration-color: currentColor; }
+.markdown ul, .markdown ol { margin: 13px 0; padding-left: 2px; list-style: none; }
+.markdown ol { counter-reset: md; }
+.markdown li { position: relative; padding-left: 24px; margin: 8px 0; color: var(--text-3); line-height: 1.7; max-width: 74ch; }
+.markdown ul > li::before { content: ""; position: absolute; left: 3px; top: .56em; width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--accent); }
+.markdown ol > li { counter-increment: md; }
+.markdown ol > li::before { content: counter(md, decimal-leading-zero); position: absolute; left: 0; top: 0; font-family: var(--mono); font-size: 11.5px; color: var(--accent); }
+.markdown code { font-family: var(--mono); font-size: .86em; color: var(--accent); background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-xs); padding: 1px 6px; }
+.markdown pre { position: relative; margin: 16px 0; padding: 15px 17px; overflow-x: auto; background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--r); font-family: var(--mono); font-size: 12.5px; line-height: 1.75; color: var(--text-2); }
+.markdown pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+.markdown blockquote { margin: 16px 0; padding: 2px 0 2px 17px; border-left: 2px solid var(--accent); color: var(--text-4); }
+.markdown table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; display: block; overflow-x: auto; }
+.markdown th, .markdown td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.markdown th { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--text-4); white-space: nowrap; }
+.markdown td { color: var(--text-3); }
+.markdown tbody tr:last-child td { border-bottom: none; }
+.markdown hr { border: none; height: 1px; background: var(--line); margin: 34px 0; }
+.markdown img { display: inline-block; }
+.markdown b, .markdown strong { color: var(--text); font-weight: 600; }
+
+.copy-btn {
+  position: absolute; top: 7px; right: 7px;
+  background: var(--panel-2); border: 1px solid var(--line-2); border-radius: var(--r-xs);
+  color: var(--text-4); font-family: var(--mono); font-size: 10px; padding: 3px 8px; cursor: pointer;
+  opacity: 0; transition: opacity .15s var(--ease), color .15s var(--ease), border-color .15s var(--ease);
+}
+.markdown pre:hover .copy-btn, .copy-btn:focus-visible { opacity: 1; }
+.copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+.docs-error {
+  border: 1px solid color-mix(in srgb, var(--danger) 34%, transparent);
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+  color: var(--danger); padding: 14px 16px; border-radius: var(--r); font-size: 14px;
+}
+
+@media (max-width: 980px) {
+  .docs-shell { grid-template-columns: 1fr; }
+  .docs-nav {
+    position: static; max-height: none; overflow-y: visible; overflow-x: auto;
+    flex-direction: row; align-items: center; gap: 3px;
+    padding: 11px var(--gut); border-right: none; border-bottom: 1px solid var(--line);
+  }
+  .docs-nav .lbl { display: none; }
+  .docs-nav a { border-left: none; padding: 7px 10px; white-space: nowrap; }
+  .docs-nav a.active { border-left: none; border-bottom: 2px solid var(--accent); }
+  .docs-main { max-width: none; }
+}

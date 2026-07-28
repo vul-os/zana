@@ -1,0 +1,106 @@
+[
+  {
+    "slug": "body",
+    "label": "Chassis body",
+    "blurb": "Iteration 4 \u2014 the shell the drivetrain and boards mount into",
+    "source": "mower/mowbot4-Body.stl",
+    "triangles": 6156,
+    "size_mm": [
+      380.0,
+      380.0,
+      41.0
+    ],
+    "file": "./assets/renders/body.webp"
+  },
+  {
+    "slug": "plate",
+    "label": "Base plate",
+    "blurb": "Deck the motors, castor and coil receiver bolt to",
+    "source": "mower/mowbot4-Plate.stl",
+    "triangles": 5444,
+    "size_mm": [
+      380.0,
+      380.0,
+      10.0
+    ],
+    "file": "./assets/renders/plate.webp"
+  },
+  {
+    "slug": "wheel",
+    "label": "Drive wheel",
+    "blurb": "Printed hub and tread; cast from mowbot4-WheelMold",
+    "source": "mower/mowbot4-Wheel.stl",
+    "triangles": 3494,
+    "size_mm": [
+      190.0,
+      40.0,
+      189.9
+    ],
+    "file": "./assets/renders/wheel.webp"
+  },
+  {
+    "slug": "motor-mount",
+    "label": "Motor support",
+    "blurb": "Bracket for the main drive gearmotor",
+    "source": "mower/mowbot4-MainMotorSupport.stl",
+    "triangles": 5464,
+    "size_mm": [
+      60.0,
+      42.0,
+      40.0
+    ],
+    "file": "./assets/renders/motor-mount.webp"
+  },
+  {
+    "slug": "castor",
+    "label": "Castor fitting",
+    "blurb": "Front swivel mount",
+    "source": "mower/castor_fitting-Body.stl",
+    "triangles": 2044,
+    "size_mm": [
+      90.0,
+      90.0,
+      15.0
+    ],
+    "file": "./assets/renders/castor.webp"
+  },
+  {
+    "slug": "coupler",
+    "label": "Coupler",
+    "blurb": "Shaft coupler \u2014 printed and aluminium variants",
+    "source": "mower/alimunum_coupler-Body.stl",
+    "triangles": 884,
+    "size_mm": [
+      30.0,
+      30.0,
+      30.0
+    ],
+    "file": "./assets/renders/coupler.webp"
+  },
+  {
+    "slug": "wheel-mold",
+    "label": "Wheel mould",
+    "blurb": "Two-part mould for casting the tyre",
+    "source": "mower/mowbot4-WheelMold.stl",
+    "triangles": 4400,
+    "size_mm": [
+      230.0,
+      50.0,
+      230.0
+    ],
+    "file": "./assets/renders/wheel-mold.webp"
+  },
+  {
+    "slug": "body-3",
+    "label": "Chassis, iteration 3",
+    "blurb": "The previous shell \u2014 kept, because the design history is the documentation",
+    "source": "mower/mowbot3-Body.stl",
+    "triangles": 31126,
+    "size_mm": [
+      364.7,
+      360.0,
+      128.0
+    ],
+    "file": "./assets/renders/body-3.webp"
+  }
+]

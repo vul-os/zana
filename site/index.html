@@ -1,255 +1,522 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Zana — open hardware for the physical world</title>
-<meta name="description" content="Zana is an open-hardware line — robot mowers, sensor nodes, security and cleaning bots, cameras — that you download, build, and run yourself. FreeCAD + KiCad, MIT-licensed. The body to Aql's brain.">
+<meta name="description" content="Open-hardware reference designs for the devices a home or business actually runs on. FreeCAD bodies, KiCad boards and a tested wireless-power model for an autonomous robot mower — MIT, vendor-neutral, and honest about what is and isn't finished.">
+<meta name="theme-color" content="#0a0b0d">
+<link rel="icon" href="./assets/brand/favicon.svg">
+<link rel="canonical" href="https://vulos.org/products/zana">
+<link rel="preload" as="font" type="font/woff2" href="./assets/fonts/archivo-latin-600-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="./assets/fonts/ibm-plex-sans-latin-400-normal.woff2" crossorigin>
+<link rel="stylesheet" href="./assets/zana.css">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zana">
 <meta property="og:title" content="Zana — open hardware for the physical world">
-<meta property="og:description" content="Robot mowers, sensor nodes, security and cleaning bots, cameras — open designs you build yourself. Runs on Aql.">
+<meta property="og:description" content="FreeCAD bodies, KiCad boards and a tested wireless-power model for an autonomous robot mower. Open, vendor-neutral, prototype-stage — and it says so.">
 <meta property="og:url" content="https://vulos.org/products/zana">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='9' fill='%230E0E10'/%3E%3Cpath d='M17 5 L29 17 L17 29 L5 17 Z' fill='none' stroke='%23f2a72c' stroke-width='2'/%3E%3Ccircle cx='17' cy='17' r='3.1' fill='%23f2a72c'/%3E%3C/svg%3E">
-<style>*,*::before,*::after{box-sizing:border-box}
-/* ── Tokens (identical in every Vulos product site — see tokens.css) ────── */
-:root{
-  --bg:#09090B; --bg-soft:#0E0E10; --panel:#131316; --panel-2:#18181B;
-  --border:rgba(255,255,255,.08); --border-2:rgba(255,255,255,.13);
-  --text:#FAFAFA; --muted:#A1A1AA; --faint:#71717A;
-  --radius:16px; --max:1120px;
-  --mono:ui-monospace,SFMono-Regular,"SF Mono","Geist Mono",Menlo,Consolas,monospace;
-  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
-}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:16px}
-body::before{content:"";position:fixed;inset:0;z-index:-1;background:
-  radial-gradient(1100px 600px at 80% -10%, color-mix(in srgb,var(--accent) 10%, transparent), transparent 60%),
-  radial-gradient(900px 500px at -10% 10%, color-mix(in srgb,var(--accent-2) 8%, transparent), transparent 55%),
-  var(--bg);}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
-.accent{color:var(--accent)}
+<meta property="og:image" content="https://vulos.org/products/zana/assets/renders/body-3.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Zana — open hardware for the physical world">
+<meta name="twitter:description" content="Open-hardware reference designs: CAD, boards, and a wireless-power model whose numbers are re-derived by CI.">
+<meta name="twitter:image" content="https://vulos.org/products/zana/assets/renders/body-3.webp">
 
-/* Header */
-.site-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 72%, transparent);border-bottom:1px solid var(--border)}
-.nav{display:flex;align-items:center;gap:18px;height:64px}
-.brand{display:flex;align-items:center;gap:11px;font-weight:600;font-size:18px;letter-spacing:-.03em}
-.brand .tile{width:34px;height:34px;border-radius:9px;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.12) inset, 0 4px 14px rgba(0,0,0,.35);background:#0E0E10;display:grid;place-items:center}
-.brand .tile svg{width:100%;height:100%;display:block}
-.nav-spacer{flex:1}
-.nav-links{display:flex;align-items:center;gap:22px}
-.nav-links a{color:var(--muted);font-size:14.5px;font-weight:500;transition:color .15s}
-.nav-links a:hover{color:var(--text)}
-.vulos-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--border-2);border-radius:999px;font-size:13px;color:var(--muted);transition:border-color .15s,color .15s}
-.vulos-badge:hover{border-color:var(--accent);color:var(--text)}
-.vulos-badge img{width:16px;height:16px;border-radius:4px}
-@media(max-width:760px){.nav-links{display:none}}
-
-/* Buttons */
-.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 20px;border-radius:11px;font-weight:600;font-size:15px;border:1px solid transparent;cursor:pointer;transition:transform .12s,box-shadow .2s,background .2s,border-color .2s}
-.btn:hover{transform:translateY(-1px)}
-.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#1A1204;box-shadow:0 8px 26px -8px color-mix(in srgb,var(--accent) 60%, transparent)}
-.btn-primary:hover{box-shadow:0 12px 34px -8px color-mix(in srgb,var(--accent) 75%, transparent)}
-.btn-ghost{background:var(--panel);border-color:var(--border-2);color:var(--text)}
-.btn-ghost:hover{border-color:var(--accent)}
-
-/* Hero */
-.hero{padding:84px 0 56px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%, transparent);border:1px solid color-mix(in srgb,var(--accent) 28%, transparent);padding:6px 13px;border-radius:999px}
-.hero .wordmark{margin:26px 0 0;font-size:clamp(48px,8vw,76px);font-weight:800;letter-spacing:-.04em;line-height:1}
-.hero .tagline{font-size:clamp(18px,2.4vw,23px);color:var(--text);margin:18px 0 0;max-width:720px;font-weight:500}
-.hero .blurb{font-size:16.5px;color:var(--muted);margin:18px 0 0;max-width:660px}
-.cta-row{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px}
-
-/* Sections */
-.section{padding:64px 0}
-.section h2{font-size:clamp(26px,4vw,36px);letter-spacing:-.03em;margin:0 0 8px;font-weight:800}
-.section .lead{color:var(--muted);margin:0 0 38px;font-size:17px;max-width:640px}
-
-/* Features */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
-@media(max-width:620px){.grid{grid-template-columns:1fr}}
-.card{background:linear-gradient(180deg,var(--panel),var(--bg-soft));border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:border-color .2s,transform .2s}
-.card:hover{border-color:color-mix(in srgb,var(--accent) 45%, var(--border));transform:translateY(-2px)}
-.card .dot{width:34px;height:34px;border-radius:9px;background:color-mix(in srgb,var(--accent) 13%, transparent);border:1px solid color-mix(in srgb,var(--accent) 32%, transparent);display:grid;place-items:center;margin-bottom:15px}
-.card .dot::after{content:"";width:11px;height:11px;border-radius:3px;background:var(--accent)}
-.card h3{margin:0 0 8px;font-size:17.5px;letter-spacing:-.01em}
-.card p{margin:0;color:var(--muted);font-size:14.5px}
-.card code{font-family:var(--mono);font-size:.86em;background:rgba(255,255,255,.06);padding:1px 5px;border-radius:5px;color:var(--text)}
-/* State chip — every card describing repo contents wears one, so a reader
-   never has to guess whether something is shipped or sketched. */
-.card .state{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);background:var(--panel-2);border:1px solid var(--border-2);padding:3px 9px;border-radius:999px}
-.card .state.live{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%, transparent)}
-
-/* Quickstart */
-.quick{display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center}
-@media(max-width:820px){.quick{grid-template-columns:1fr}}
-.codeblock{background:#0C0C0E;border:1px solid var(--border-2);border-radius:var(--radius);overflow:hidden}
-.codeblock .bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--border)}
-.codeblock .bar i{width:11px;height:11px;border-radius:50%;background:#26262b;display:inline-block}
-.codeblock pre{margin:0;padding:18px 20px;overflow:auto;font-family:var(--mono);font-size:13.5px;line-height:1.75;color:#D4D4D8}
-.codeblock .c{color:var(--faint)}
-.steps{list-style:none;margin:0;padding:0;display:grid;gap:16px}
-.steps li{display:flex;gap:14px;align-items:flex-start}
-.steps .num{flex:none;width:28px;height:28px;border-radius:8px;background:color-mix(in srgb,var(--accent) 13%, transparent);border:1px solid color-mix(in srgb,var(--accent) 32%, transparent);color:var(--accent);font-weight:700;display:grid;place-items:center;font-size:14px}
-.steps b{display:block;font-size:15.5px}
-.steps span{color:var(--muted);font-size:14px}
-
-/* Explainer band */
-.decent{background:linear-gradient(120deg,var(--panel),var(--bg-soft));border:1px solid var(--border);border-radius:var(--radius);padding:40px}
-.decent h2{margin-top:0}
-.decent .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:28px}
-@media(max-width:820px){.decent .cols{grid-template-columns:1fr}}
-.decent h4{margin:0 0 6px;font-size:16px;letter-spacing:-.01em}
-.decent h4::before{content:"/ ";color:var(--accent);font-weight:700}
-.decent p{margin:0;color:var(--muted);font-size:14.5px}
-
-/* Vulos band */
-.vulos-band{margin:24px 0;background:linear-gradient(120deg,var(--panel),var(--bg-soft));border:1px solid var(--border);border-radius:var(--radius);padding:40px;display:flex;gap:26px;align-items:center}
-@media(max-width:680px){.vulos-band{flex-direction:column;text-align:center}}
-.vulos-band img{width:60px;height:60px;border-radius:14px;flex:none}
-.vulos-band h3{margin:0 0 6px;font-size:21px}
-.vulos-band p{margin:0;color:var(--muted);max-width:680px}
-.vulos-band .more{margin-top:14px;display:inline-flex;color:var(--accent);font-weight:600;font-size:15px}
-
-/* Footer */
-.site-footer{border-top:1px solid var(--border);margin-top:40px;padding:40px 0}
-.foot{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
-.foot .left{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px}
-.foot .left img{width:20px;height:20px;border-radius:5px}
-.foot .links{display:flex;gap:20px;flex-wrap:wrap}
-.foot .links a{color:var(--muted);font-size:14px}
-.foot .links a:hover{color:var(--text)}
-</style>
-<style>:root{--accent:#f2a72c;--accent-2:#C97C10}</style>
+<script>
+/* Apply the stored theme before first paint so the page never flashes graphite
+   at a reader who chose vellum. */
+try { var t = localStorage.getItem("zana-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
 </head>
+
 <body>
-<header class="site-header"><div class="wrap nav">
-    <a class="brand" href="./index.html"><span class="tile">
-      <svg viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect width="34" height="34" rx="9" fill="#0E0E10"/>
-        <path d="M17 5 L29 17 L17 29 L5 17 Z" fill="none" stroke="#f2a72c" stroke-width="2"/>
-        <circle cx="17" cy="17" r="3.1" fill="#f2a72c"/>
-      </svg>
-    </span>Zana</a>
-    <div class="nav-spacer"></div>
-    <nav class="nav-links">
-      <a href="./index.html#devices">Devices</a>
-      <a href="./index.html#repo">In the repo</a>
-      <a href="./index.html#quickstart">Get the designs</a>
-      <a href="./docs.html">Docs</a>
-      <a href="https://github.com/vul-os/zana" target="_blank" rel="noopener">GitHub</a>
-    </nav>
-    <a class="vulos-badge" href="https://vulos.org" target="_blank" rel="noopener" title="Part of Vulos">
-      <img src="./assets/vulos-logo.png" alt="Vulos">Part of Vulos
-    </a>
-  </div></header>
-<main>
-  <section class="hero"><div class="wrap">
-    <span class="eyebrow">Open hardware · FreeCAD + KiCad · prototype-stage</span>
-    <h1 class="wordmark">Zana</h1>
-    <p class="tagline">Build the body. You own the machine.</p>
-    <p class="blurb">Zana — Swahili for <em>tools</em> — is an open-hardware line for the physical world: the mowers, sensor nodes, bots and cameras a home or business actually runs on. What ships is the <strong>design</strong>: FreeCAD sources, KiCad projects, printable meshes, MIT-licensed. No serial number, no cloud activation, no vendor. Today exactly one device is real — an autonomous mower — and it is prototype CAD and PCB work, not a buy-the-parts kit.</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="#quickstart">Get the designs</a>
-      <a class="btn btn-ghost" href="./docs.html">Read the docs</a>
-      <a class="btn btn-ghost" href="https://github.com/vul-os/aql" target="_blank" rel="noopener">Meet Aql, the brain</a>
-    </div>
-  </div></section>
+<div class="page">
 
-  <section class="section" id="devices"><div class="wrap">
-    <h2>The line</h2>
-    <p class="lead">Four device classes, one of which exists. The other three are named because they are the plan, and labelled because they are not the product.</p>
-    <div class="grid">
-      <div class="card"><div class="dot"></div><h3>Mower</h3><p>Autonomous robot mower with an inductive charging dock. Four chassis iterations in FreeCAD, seven KiCad boards, and a worked wireless-power study behind the coil geometry.</p><span class="state live">CAD · PCB · in repo</span></div>
-      <div class="card"><div class="dot"></div><h3>Sensor nodes</h3><p>Environment, motion and presence, over open protocols. Nothing is designed yet — no file in this repo corresponds to one.</p><span class="state">planned</span></div>
-      <div class="card"><div class="dot"></div><h3>Security &amp; cleaning bots</h3><p>Patrol and cleaning units you own outright. Same status: an intention, not a design.</p><span class="state">planned</span></div>
-      <div class="card"><div class="dot"></div><h3>Cameras</h3><p>Local-first cameras where footage stays on your own box, not a vendor's. Not started.</p><span class="state">planned</span></div>
-    </div>
-  </div></section>
+<header class="site-header hdr">
+  <a class="brand" href="./index.html">
+<svg class="mark" viewBox="0 0 64 64" role="img" aria-label="Zana">
+      <polygon class="hex" points="58,32 45,54.52 19,54.52 6,32 19,9.48 45,9.48"
+               fill="none" stroke-width="5" stroke-linejoin="round"/>
+      <polyline class="trace" points="22.5,22.5 41.5,22.5 22.5,41.5 41.5,41.5"
+                fill="none" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle class="pad" cx="22.5" cy="22.5" r="3.3"/>
+      <circle class="pad" cx="41.5" cy="41.5" r="3.3"/>
+    </svg>
+    <span class="word">zana</span>
+  </a>
+  <div class="nav-spacer sp"></div>
+  <nav class="nav nav-links">
+    <a href="#inventory">What's here</a>
+    <a href="#mower">The mower</a>
+    <a href="#power">Wireless power</a>
+    <a href="#electronics">Electronics</a>
+    <a href="#build">Build it</a>
+    <a href="./docs.html">Docs</a>
+  </nav>
+  <a class="vulos-badge" href="https://vulos.org" target="_blank" rel="noopener" title="Part of Vulos">
+    <img src="./assets/vulos-logo.png" alt=""><span>Part of Vulos</span>
+  </a>
+  <button class="icon-btn" data-theme-toggle type="button" aria-label="Toggle theme"></button>
+</header>
 
-  <section class="section" id="repo"><div class="wrap">
-    <h2>What's actually in the repo</h2>
-    <p class="lead">A hardware repo is mostly binaries no build server can check, so it is worth being blunt about which parts are finished work and which are recovered prototyping.</p>
-    <div class="grid">
-      <div class="card"><div class="dot"></div><h3>Chassis &amp; drivetrain</h3><p>Four <code>mowbot*.FCStd</code> iterations — <code>mowbot4</code> is current — plus wheels, moulds, motor supports, shafts, couplers (one machined from aluminium), a GT2 pulley and a castor fitting.</p><span class="state live">design files</span></div>
-      <div class="card"><div class="dot"></div><h3>Seven KiCad boards</h3><p><code>TRANSMITTER</code> in thru-hole and SMD, <code>MAINBOARD</code>, <code>EMF_SENSOR</code>, <code>RAIN</code>, and KiKit panel scripts for the boards meant to be etched at home.</p><span class="state live">design files</span></div>
-      <div class="card"><div class="dot"></div><h3>Wireless-power study</h3><p>Executable Python: elliptic-integral mutual inductance, skin and proximity losses, and the <code>k·Q</code> efficiency solve for the charging link. The coils it recommends are re-derived by the test suite on every push.</p><span class="state live">runs · tested</span></div>
-      <div class="card"><div class="dot"></div><h3>Fabrication rigs</h3><p>A coil winder, a PCB mill and a UV exposure box — designed so the mower's own electronics could be made in the same workshop that made the mower.</p><span class="state live">design files</span></div>
-      <div class="card"><div class="dot"></div><h3>Driving simulator</h3><p>C++ on raylib + Bullet, native and WASM, with an earlier PyBullet prototype. It is source only: nothing builds it, nothing tests it, and it loads a mesh that is not checked in.</p><span class="state">sketch — not built</span></div>
-      <div class="card"><div class="dot"></div><h3>No firmware</h3><p>Worth saying plainly: there is no firmware in this repo, no bill of materials and no assembly guide. Sourcing parts and writing the control code are still yours to do.</p><span class="state">absent</span></div>
-    </div>
-  </div></section>
+<!-- ══ hero ══════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="lbl cu">Open hardware · MIT</span></span>
+        <h1>The devices your&nbsp;hub <em>actually commands</em>.</h1>
+        <p class="lede">
+          <b>Zana</b> — Swahili for <i>tools</i> — is an open-hardware line for the physical
+          world: reference designs for the machines a home or business runs on. The first is
+          an autonomous <b>robot mower</b> with an inductive charging dock. FreeCAD bodies,
+          KiCad boards, and a wireless-power model whose every published number is
+          re-derived by CI.
+        </p>
+        <div class="cta-row cta">
+          <a class="btn btn-primary" href="#inventory">
+            See what's in the repo
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="./docs.html">Read the docs</a>
+          <a class="btn btn-ghost" href="https://github.com/vul-os/zana" target="_blank" rel="noopener">Source</a>
+        </div>
 
-  <section class="section" id="quickstart"><div class="wrap">
-    <h2>Get the designs</h2>
-    <p class="lead">There is nothing to install and no daemon to run — the deliverable is a directory of CAD. These commands are what a clean clone can actually do today.</p>
-    <div class="quick">
-      <div class="codeblock">
-        <div class="bar"><i></i><i></i><i></i></div>
-        <pre>git clone https://github.com/vul-os/zana.git
-cd zana
-
-<span class="c"># run the checks that gate this repo</span>
-pip install -r requirements-dev.txt
-python3 -m pytest -q
-
-<span class="c"># re-derive the charging-coil design</span>
-cd mower/coil-study &amp;&amp; python3 main.py</pre>
+        <div class="quick">
+          <div><b class="num">4</b><span class="lbl">chassis iterations</span></div>
+          <div><b class="num">5</b><span class="lbl">KiCad boards</span></div>
+          <div><b class="num">91.5<span style="font-size:.6em">%</span></b><span class="lbl">link efficiency</span></div>
+          <div><b class="num">MIT</b><span class="lbl">licence</span></div>
+        </div>
       </div>
+
+      <figure class="plate">
+        <img src="./assets/renders/body-3.webp" alt="Axonometric render of the mower's chassis shell — a rounded body with two wheel arches cut into its sides — generated from the tracked mowbot3-Body.stl mesh." width="1100" height="1100" fetchpriority="high">
+        <div class="dim-row">
+          <span class="dim"><b>W 364.7 mm</b></span>
+          <span class="dim"><b>D 360.0 mm</b></span>
+          <span class="dim"><b>H 128.0 mm</b></span>
+        </div>
+      </figure>
+    </div>
+
+    <!-- The corner stamp on any engineering drawing — here it carries the
+         repo's real state, so the honesty notice is the first thing measured. -->
+    <div class="titleblock rv" style="margin-top: clamp(28px, 4vw, 44px)">
+      <div class="tb"><span class="k">Project</span><span class="v">Zana / mower</span></div>
+      <div class="tb"><span class="k">Stage</span><span class="v cu">Prototype — reference designs</span></div>
+      <div class="tb"><span class="k">Formats</span><span class="v">FCStd · STEP · 3MF · KiCad</span></div>
+      <div class="tb"><span class="k">Units</span><span class="v">mm</span></div>
+      <div class="tb"><span class="k">Firmware</span><span class="v">None in this repo</span></div>
+      <div class="tb"><span class="k">Bill of materials</span><span class="v">Not yet written</span></div>
+      <div class="tb"><span class="k">Assembly guide</span><span class="v">Not yet written</span></div>
+      <div class="tb"><span class="k">Licence</span><span class="v">MIT</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ what's here ═══════════════════════════════════════════════════════ -->
+<section class="section ruled" id="inventory">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow"><span class="lbl">Inventory</span></span>
+      <h2>Exactly what's here, <em>and what state it's in</em>.</h2>
+      <p class="lede">
+        This is recovered prototyping work, not a kit. Some of it opens in FreeCAD and
+        prints today; one part of it runs and is covered by tests; one part is source
+        nobody has ever compiled. Every row says which — because the fastest way to waste
+        someone's weekend is to let them find out after they've cleared the bench.
+      </p>
+    </div>
+
+    <div class="inv-scroll rv">
+      <table class="inv">
+        <thead>
+          <tr><th>Area</th><th>Contents</th><th>State</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="area">Chassis &amp; body</td>
+            <td>FreeCAD bodies across four iterations (<code>mower/mowbot*.FCStd</code>), wheels, casting moulds, motor supports</td>
+            <td><span class="chip cad">Design files</span></td>
+          </tr>
+          <tr>
+            <td class="area">Drivetrain</td>
+            <td>Shafts, couplers including an aluminium variant, GT2 pulley, castor fitting</td>
+            <td><span class="chip cad">Design files</span></td>
+          </tr>
+          <tr>
+            <td class="area">Electronics</td>
+            <td>KiCad projects — <code>TRANSMITTER</code> (thru-hole and SMD), <code>MAINBOARD</code>, <code>EMF_SENSOR</code>, <code>RAIN</code>, plus a shared symbol library</td>
+            <td><span class="chip cad">Design files</span></td>
+          </tr>
+          <tr>
+            <td class="area">Wireless power</td>
+            <td>An inductance and efficiency model for the charging link, in Python — the one executable engineering study here</td>
+            <td><span class="chip ok">Runs · tested</span></td>
+          </tr>
+          <tr>
+            <td class="area">Simulator</td>
+            <td>C++ (raylib + Bullet, native and WASM) and PyBullet sources for driving over grass</td>
+            <td><span class="chip raw">Source only</span></td>
+          </tr>
+          <tr>
+            <td class="area">Fabrication rigs</td>
+            <td>The coil winder, PCB mill and UV exposure box built to make the electronics</td>
+            <td><span class="chip cad">Design files</span></td>
+          </tr>
+          <tr>
+            <td class="area">Firmware</td>
+            <td>—</td>
+            <td><span class="chip none">Not here</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ the mower ═════════════════════════════════════════════════════════ -->
+<section class="section sunk" id="mower">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow"><span class="lbl">The mower</span></span>
+      <h2>Four iterations of a robot <em>that has to survive a lawn</em>.</h2>
+      <p class="lede">
+        Every part below is rendered from the mesh tracked in this repo — the same
+        <code>.stl</code> you would slice — and the dimensions are its real bounding box,
+        measured at render time by <code>site/gen_renders.py</code>. Nothing here is an
+        illustration of a thing that doesn't exist.
+      </p>
+    </div>
+
+    <div class="parts rv">
+      <article class="part">
+        <div class="fig"><img src="./assets/renders/body.webp" alt="Render of the iteration-4 chassis body: a large, gently curved shell plate." loading="lazy" width="1100" height="1100"></div>
+        <div class="body">
+          <h3>Chassis body</h3>
+          <p>Iteration 4 — the shell the drivetrain and boards mount into.</p>
+          <div class="spec"><span><b>380 × 380 × 41</b> mm</span><span>6 156 facets</span></div>
+        </div>
+      </article>
+      <article class="part">
+        <div class="fig"><img src="./assets/renders/plate.webp" alt="Render of the base plate: a flat square deck with mounting bores." loading="lazy" width="1100" height="1100"></div>
+        <div class="body">
+          <h3>Base plate</h3>
+          <p>The deck that the motors, castor and coil receiver bolt onto.</p>
+          <div class="spec"><span><b>380 × 380 × 10</b> mm</span><span>5 444 facets</span></div>
+        </div>
+      </article>
+      <article class="part">
+        <div class="fig"><img src="./assets/renders/wheel.webp" alt="Render of a drive wheel: a thick disc with a central bore." loading="lazy" width="1100" height="1100"></div>
+        <div class="body">
+          <h3>Drive wheel</h3>
+          <p>Printed hub and tread, cast from the two-part mould below.</p>
+          <div class="spec"><span><b>190 × 40 × 189.9</b> mm</span><span>3 494 facets</span></div>
+        </div>
+      </article>
+      <article class="part">
+        <div class="fig"><img src="./assets/renders/motor-mount.webp" alt="Render of the motor support bracket: a block with a large central bore, a counterbore and two fixing holes." loading="lazy" width="1100" height="1100"></div>
+        <div class="body">
+          <h3>Motor support</h3>
+          <p>Bracket for the main drive gearmotor, bored for the shaft and its fixings.</p>
+          <div class="spec"><span><b>60 × 42 × 40</b> mm</span><span>5 464 facets</span></div>
+        </div>
+      </article>
+      <article class="part">
+        <div class="fig"><img src="./assets/renders/castor.webp" alt="Render of the castor fitting: a round plate that carries the front swivel wheel." loading="lazy" width="1100" height="1100"></div>
+        <div class="body">
+          <h3>Castor fitting</h3>
+          <p>The front swivel mount — the mower's third point of contact.</p>
+          <div class="spec"><span><b>90 × 90 × 15</b> mm</span><span>2 044 facets</span></div>
+        </div>
+      </article>
+      <article class="part">
+        <div class="fig"><img src="./assets/renders/coupler.webp" alt="Render of the shaft coupler: a small cube-proportioned block with a bore." loading="lazy" width="1100" height="1100"></div>
+        <div class="body">
+          <h3>Shaft coupler</h3>
+          <p>Motor-to-shaft coupling. Printed, with an aluminium variant for the load path.</p>
+          <div class="spec"><span><b>30 × 30 × 30</b> mm</span><span>884 facets</span></div>
+        </div>
+      </article>
+      <article class="part">
+        <div class="fig"><img src="./assets/renders/wheel-mold.webp" alt="Render of the two-part wheel mould." loading="lazy" width="1100" height="1100"></div>
+        <div class="body">
+          <h3>Wheel mould</h3>
+          <p>Two-part mould for casting the tyre — the tooling ships with the part.</p>
+          <div class="spec"><span><b>230 × 50 × 230</b> mm</span><span>4 400 facets</span></div>
+        </div>
+      </article>
+      <article class="part">
+        <div class="fig"><img src="./assets/renders/body-3.webp" alt="Render of the iteration-3 chassis shell, showing the two wheel arches." loading="lazy" width="1100" height="1100"></div>
+        <div class="body">
+          <h3>Chassis, iteration 3</h3>
+          <p>The previous shell. Kept deliberately — on a hardware project the design history <em>is</em> the documentation.</p>
+          <div class="spec"><span><b>364.7 × 360 × 128</b> mm</span><span>31 126 facets</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ wireless power ════════════════════════════════════════════════════ -->
+<section class="section ruled" id="power">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow"><span class="lbl">Wireless power</span></span>
+      <h2>A charging link solved <em>on paper first</em>.</h2>
+      <p class="lede">
+        The mower charges by induction, so there is no connector to corrode in wet grass.
+        <code>mower/coil-study/</code> models the link from first principles — elliptic
+        integrals for Maxwell mutual inductance, AC resistance with skin and proximity
+        effects, and the <span class="num">k·Q</span> efficiency solve — for a 200 mm coil
+        at 40 kHz across a 40 mm air gap.
+      </p>
+    </div>
+
+    <div class="specs rv">
+      <div class="spec-card">
+        <div class="top">
+          <div><span class="lbl">Option 1</span><h3 style="margin-top:8px">Minimum turns</h3></div>
+          <span class="chip cad">Simple</span>
+        </div>
+        <div class="eff"><b>85.7</b><i>% @ 40 mm</i></div>
+        <dl>
+          <dt>Configuration</dt><dd>Single layer, 8 T</dd>
+          <dt>Outer diameter</dt><dd>223.8 mm</dd>
+          <dt>Inductance</dt><dd>30.78 µH</dd>
+          <dt>Wire length</dt><dd>5.33 m</dd>
+          <dt>Resonant cap</dt><dd>514.4 nF</dd>
+        </dl>
+      </div>
+
+      <div class="spec-card pick">
+        <div class="top">
+          <div><span class="lbl cu">Option 2 · chosen</span><h3 style="margin-top:8px">Balanced</h3></div>
+          <span class="chip raw">Recommended</span>
+        </div>
+        <div class="eff"><b>91.5</b><i>% @ 40 mm</i></div>
+        <dl>
+          <dt>Configuration</dt><dd>2 layers × 8 T</dd>
+          <dt>Outer diameter</dt><dd>223.8 mm</dd>
+          <dt>Inductance</dt><dd>118.46 µH</dd>
+          <dt>Wire length</dt><dd>10.65 m</dd>
+          <dt>Resonant cap</dt><dd>133.6 nF</dd>
+        </dl>
+      </div>
+
+      <div class="spec-card">
+        <div class="top">
+          <div><span class="lbl">Option 3</span><h3 style="margin-top:8px">Maximum efficiency</h3></div>
+          <span class="chip cad">Complex</span>
+        </div>
+        <div class="eff"><b>96.4</b><i>% @ 40 mm</i></div>
+        <dl>
+          <dt>Configuration</dt><dd>2 layers × 29 T</dd>
+          <dt>Outer diameter</dt><dd>295.2 mm</dd>
+          <dt>Inductance</dt><dd>1 288.56 µH</dd>
+          <dt>Wire length</dt><dd>45.12 m</dd>
+          <dt>Resonant cap</dt><dd>12.3 nF</dd>
+        </dl>
+      </div>
+    </div>
+
+    <p class="lede rv" style="margin-top:26px">
+      Option 2 wins because it is the same 223.8 mm across as the simple coil and only
+      1.5 mm thick, but buys <b>5.9 points of efficiency</b> for one extra winding
+      operation. And these numbers are not decoration:
+      <code>tests/test_coil_physics.py</code> parses the comparison table out of
+      <code>DESIGN_SUMMARY.md</code> and re-derives <b>every cell</b> from
+      <code>physics.py</code>, then checks the model's own invariants — reciprocity,
+      monotonicity, efficiency bounds. The write-up and the model cannot drift apart
+      without CI going red.
+    </p>
+  </div>
+</section>
+
+<!-- ══ electronics ═══════════════════════════════════════════════════════ -->
+<section class="section sunk" id="electronics">
+  <div class="wrap">
+    <div class="split wide rv">
+      <div class="copy">
+        <span class="eyebrow"><span class="lbl">Electronics</span></span>
+        <h2>Five boards, <em>and the machines that made them</em>.</h2>
+        <p class="lede">
+          The copper beside this text is not an illustration — it is the
+          <code>RAIN</code> board's own plot, re-cut from
+          <code>mower/PCB/RAIN/output.svg</code>. An interdigitated comb electrode: rain
+          bridges the fingers, conductivity rises, the mower goes home.
+        </p>
+        <ul class="ticks">
+          <li><b>TRANSMITTER</b> — the dock side of the inductive link, in thru-hole and SMD revisions.</li>
+          <li><b>MAINBOARD</b> — the mower's own board.</li>
+          <li><b>EMF_SENSOR</b> — boundary-wire pickup, with a panelised DIP version for milling.</li>
+          <li><b>RAIN</b> — the electrode shown here.</li>
+          <li><b>IMRANS_LIBRARY</b> — the shared symbol library the projects draw from.</li>
+        </ul>
+        <p class="lede">
+          These boards were not ordered from a fab. The repo also carries the
+          <b>coil winder</b>, the <b>PCB mill</b> and the <b>UV exposure box</b> that were
+          built to produce them — which is the part of a hardware project nobody
+          photographs and everybody needs.
+        </p>
+      </div>
+      <figure class="plate flat" style="display:grid;place-items:center;min-height:280px">
+        <div class="electrode" id="electrode"></div>
+        <figcaption class="lbl cy" style="margin-top:18px;text-align:center">RAIN sensor — copper layer, actual plot</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ══ build it ══════════════════════════════════════════════════════════ -->
+<section class="section ruled" id="build">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow"><span class="lbl">Build it</span></span>
+      <h2>Open the sources. <em>Not a download-and-go kit</em>.</h2>
+    </div>
+
+    <div class="split rv">
       <ol class="steps">
-        <li><span class="num">1</span><div><b>Open the mechanics</b><span>FreeCAD, <code>mower/mowbot4.FCStd</code>. Everything under <code>old/</code> is superseded history.</span></div></li>
-        <li><span class="num">2</span><div><b>Open the boards</b><span>KiCad, one <code>.kicad_pro</code> per directory under <code>mower/PCB/</code>. They share <code>IMRANS_LIBRARY.kicad_sym</code>.</span></div></li>
-        <li><span class="num">3</span><div><b>Print and fabricate</b><span>Slice the <code>.3mf</code> / <code>.stl</code> meshes; plot Gerbers from KiCad, or panelise with the KiKit scripts and etch them yourself.</span></div></li>
-        <li><span class="num">4</span><div><b>Pair it with a control plane</b><span>Zana devices are built to drop into <a class="accent" href="https://github.com/vul-os/aql" target="_blank" rel="noopener">Aql</a> — and nothing in the designs is locked to it.</span></div></li>
+        <li>
+          <div><b>Mechanical — FreeCAD</b><span>Open the <code>.FCStd</code> files in <code>mower/</code>. Those are the editable sources; the <code>.3mf</code> and <code>.stl</code> exports beside them are for slicing, and <code>.step</code> for any other CAD package.</span></div>
+        </li>
+        <li>
+          <div><b>Electronics — KiCad</b><span>Open the projects under <code>mower/PCB/</code>. <code>EMF_SENSOR_DIP</code> ships a panelised board and a script for milling it yourself.</span></div>
+        </li>
+        <li>
+          <div><b>Print and cast</b><span>Slice the <code>.3mf</code>/<code>.stl</code> meshes. The wheel is cast in its own printed mould rather than printed solid.</span></div>
+        </li>
+        <li>
+          <div><b>Expect to fill gaps</b><span>There is no firmware, no bill of materials and no assembly guide in this repo. What is here is the geometry, the boards, and the reasoning behind the charging link.</span></div>
+        </li>
       </ol>
-    </div>
-  </div></section>
 
-  <section class="section"><div class="wrap">
-    <div class="decent">
-      <h2>The interesting part: charging without a plug</h2>
-      <p class="lead" style="margin-bottom:0">A mower that has to find a contact pair to charge is a mower that eventually fails on wet grass and oxide. Zana's dock is inductive, and the coil geometry was not guessed — <code>mower/coil-study/</code> models it from first principles, and the write-up is checked against the model in CI.</p>
-      <div class="cols">
-        <div><h4>Modelled, not tuned</h4><p>Maxwell's mutual inductance between coaxial loops via complete elliptic integrals, self-inductance summed segment by segment, AC resistance with skin and proximity effects — then link efficiency from <code>k·Q</code>.</p></div>
-        <div><h4>A design that survives a gap</h4><p>Two stacked layers of 8 turns on a 200 mm inner diameter reach 91.5 % link efficiency across a 40 mm air gap at 40 kHz, in a coil 223.8 mm across and 1.5 mm thick.</p></div>
-        <div><h4>Checkable, so it stays true</h4><p>Every figure in <code>DESIGN_SUMMARY.md</code> is parsed back out of the markdown and recomputed by <code>tests/test_coil_physics.py</code>. The write-up and the model cannot drift apart quietly.</p></div>
-      </div>
-    </div>
-  </div></section>
-
-  <section class="section"><div class="wrap">
-    <div class="decent">
-      <h2>Zana is the body. Aql is the brain.</h2>
-      <p class="lead" style="margin-bottom:0">Two open halves of one system, each usable on its own. Splitting them keeps both honest: Zana stays a hardware project instead of growing a bespoke app per device, and Aql stays a general command centre instead of learning every board's internals.</p>
-      <div class="cols">
-        <div><h4>Zana — the body</h4><p>Open-hardware reference designs. Vendor-neutral: a Zana device works with any compatible control plane you already run.</p></div>
-        <div><h4>Aql — the brain</h4><p>The self-hosted command centre that discovers and drives your fleet from one console, local-first. <a class="accent" href="https://github.com/vul-os/aql" target="_blank" rel="noopener">github.com/vul-os/aql →</a></p></div>
-        <div><h4>Neither requires the other</h4><p>Adopt Aql without ever building a Zana device, or build a Zana device and point it at something else entirely.</p></div>
-      </div>
-    </div>
-  </div></section>
-
-  <section class="section"><div class="wrap">
-    <div class="vulos-band">
-      <img src="./assets/vulos-logo.png" alt="Vulos logo">
       <div>
-        <h3>Part of Vulos</h3>
-        <p><a href="https://vulos.org" target="_blank" rel="noopener" style="color:var(--text);font-weight:600">Vulos</a> is a family of open, self-hostable apps built on one thesis: your data does not have to leave your machine to be useful. Zana is a fully standalone project — it never requires Vulos infrastructure to run, or to build from. Self-hosting it yourself is always the default path, and never second-class.</p>
-        <a class="more" href="https://vulos.org" target="_blank" rel="noopener">Explore Vulos →</a>
+        <div class="codeblock">
+          <div class="bar">Run the checks</div>
+<pre><span class="c"># most of this repo is CAD and PCB binaries no CI can</span>
+<span class="c"># meaningfully verify — what IS checkable is checked</span>
+<span class="p">$</span> pip install -r requirements-dev.txt
+<span class="p">$</span> python3 -m pytest -q</pre>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr;gap:12px;margin-top:16px">
+          <div class="card">
+            <h3>test_coil_physics.py</h3>
+            <p>Re-derives every number in the coil write-up from the model, and checks reciprocity, monotonicity and efficiency bounds.</p>
+          </div>
+          <div class="card">
+            <h3>test_repo_integrity.py</h3>
+            <p>Every path named in a README exists; no tracked file is an empty husk; every shell script parses; every Python file compiles.</p>
+          </div>
+          <div class="card">
+            <h3>test_site.py</h3>
+            <p>This page resolves every local reference, fetches nothing off-box, and cannot claim the simulator works.</p>
+          </div>
+        </div>
+        <p style="font-size:13.5px;margin-top:14px;color:var(--text-4)">
+          Each gate asserts its own coverage count, so it cannot pass by checking nothing.
+        </p>
       </div>
     </div>
-  </div></section>
-</main>
-<footer class="site-footer"><div class="wrap foot">
-    <div class="left"><img src="./assets/vulos-logo.png" alt="Vulos"> <span>Part of <a href="https://vulos.org" target="_blank" rel="noopener" style="color:var(--text)">Vulos</a> — open, self-hostable apps. Standalone by design.</span></div>
-    <div class="links">
-      <a href="./docs.html">Docs</a>
-      <a href="https://github.com/vul-os/zana" target="_blank" rel="noopener">GitHub</a>
-      <a href="./LICENSE.txt">License</a>
-      <a href="https://vulos.org" target="_blank" rel="noopener">vulos.org</a>
+  </div>
+</section>
+
+<!-- ══ ecosystem + standalone band ═══════════════════════════════════════ -->
+<section class="section sunk decent">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow"><span class="lbl">Ecosystem</span></span>
+      <h2>The body. <em>Aql is the brain</em>.</h2>
+      <p class="lede">
+        Zana devices are meant to drop straight into <a href="https://github.com/vul-os/aql" target="_blank" rel="noopener" style="color:var(--accent)">Aql</a>,
+        the open-source command center — but the designs are open and vendor-neutral, so
+        they work with any compatible control plane. You are not buying into anyone's
+        cloud by printing a wheel.
+      </p>
     </div>
-  </div></footer>
+
+    <svg class="trace rv" aria-hidden="true"></svg>
+
+    <div class="vulos-band rv" style="margin-top:26px">
+      <div class="txt">
+        <h3>Standalone by design</h3>
+        <p>
+          Zana is part of Vulos, and <b>never requires Vulos infrastructure to run</b>.
+          The designs are files in a git repository under an MIT licence: clone them, edit
+          them, fabricate them, sell what you make. There is no account, no activation and
+          nothing to phone home to — a bracket cannot be deprecated.
+        </p>
+      </div>
+      <a class="btn btn-ghost" href="https://vulos.org" target="_blank" rel="noopener">
+        <img src="./assets/vulos-logo.png" alt="" width="16" height="16" style="border-radius:3px">
+        vulos.org
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ footer ════════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="foot">
+    <div class="foot-grid">
+      <div>
+<a class="brand" href="./index.html"><svg class="mark" viewBox="0 0 64 64" role="img" aria-label="Zana">
+      <polygon class="hex" points="58,32 45,54.52 19,54.52 6,32 19,9.48 45,9.48"
+               fill="none" stroke-width="5" stroke-linejoin="round"/>
+      <polyline class="trace" points="22.5,22.5 41.5,22.5 22.5,41.5 41.5,41.5"
+                fill="none" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle class="pad" cx="22.5" cy="22.5" r="3.3"/>
+      <circle class="pad" cx="41.5" cy="41.5" r="3.3"/>
+    </svg>
+    <span class="word">zana</span></a>
+        <p>
+          Open hardware for the physical world — the devices your hub commands.
+          Prototype-stage reference designs, MIT licensed, vendor-neutral.
+        </p>
+      </div>
+      <div class="foot-col">
+        <span class="lbl">This repo</span>
+        <ul>
+          <li><a href="#inventory">What's here</a></li>
+          <li><a href="#mower">The mower</a></li>
+          <li><a href="#power">Wireless power</a></li>
+          <li><a href="#electronics">Electronics</a></li>
+          <li><a href="./docs.html">Documentation</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <span class="lbl">Project</span>
+        <ul>
+          <li><a href="https://github.com/vul-os/zana" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://github.com/vul-os/aql" target="_blank" rel="noopener">Aql — the brain</a></li>
+          <li><a href="https://www.freecad.org/" target="_blank" rel="noopener">FreeCAD</a></li>
+          <li><a href="https://www.kicad.org/" target="_blank" rel="noopener">KiCad</a></li>
+          <li><a href="./LICENSE.txt">Licence — MIT</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-btm">
+      <span>© 2026 VulOS · MIT</span>
+      <span>Part of <a href="https://vulos.org" target="_blank" rel="noopener" style="color:var(--text)">Vulos</a> — open, self-hostable apps.</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script src="./assets/zana.js" defer></script>
+<script>
+/* The RAIN electrode is fetched rather than inlined so the same generated file
+   serves the page and stays byte-identical to what gen_renders.py wrote. It is
+   decoration: if the fetch fails (file:// origins block it), the page is
+   unchanged apart from an empty frame. */
+fetch("./assets/renders/rain-electrode.svg")
+  .then(function (r) { return r.ok ? r.text() : Promise.reject(r.status); })
+  .then(function (svg) { document.getElementById("electrode").innerHTML = svg; })
+  .catch(function () {});
+</script>
 </body>
 </html>
