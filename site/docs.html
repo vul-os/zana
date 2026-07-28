@@ -2,92 +2,115 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Zana docs — open hardware for the physical world</title>
 <meta name="description" content="Zana documentation — open-hardware reference designs: robot mowers, sensor nodes, security and cleaning bots, cameras.">
-<meta name="color-scheme" content="dark">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%230b0c0e'/%3E%3Cpath d='M20 6 L34 20 L20 34 L6 20 Z' fill='none' stroke='%23f2a72c' stroke-width='2.4'/%3E%3Ccircle cx='20' cy='20' r='3.8' fill='%23f2a72c'/%3E%3C/svg%3E">
-<style>
-  :root{
-    --ink-950:#08090a;--ink-900:#0b0c0e;--ink-850:#101214;--ink-800:#16181b;
-    --line:rgba(233,228,218,.09);--line-strong:rgba(233,228,218,.16);
-    --bone:#ece7dc;--bone-dim:#9c978b;--bone-faint:#63605a;
-    --signal:#f2a72c;--signal-hi:#ffc35a;--glow:rgba(242,167,44,.32);--online:#74e0a6;
-    --disp:'Trebuchet MS',system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--ink-950);color:var(--bone);font-family:var(--mono);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(120% 70% at 80% -10%,rgba(242,167,44,.08),transparent 55%)}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-  .disp{font-family:var(--disp);font-weight:700;letter-spacing:-.02em}
-  .kick{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--bone-faint)}
-  nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);background:rgba(8,9,10,.72);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-  .brand{display:flex;align-items:center;gap:11px}
-  .brand svg{width:26px;height:26px}
-  .brand b{font-family:var(--disp);font-size:18px;letter-spacing:.18em;font-weight:700}
-  .nlinks{display:flex;gap:26px;align-items:center;font-size:13px;color:var(--bone-dim)}
-  .nlinks a:hover{color:var(--bone)}
-  .btn{border:1px solid var(--line-strong);padding:8px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--bone);transition:.15s;display:inline-block}
-  .btn:hover{border-color:var(--signal)}
-  @media(max-width:760px){.nlinks a.hidem{display:none}}
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='9' fill='%230E0E10'/%3E%3Cpath d='M17 5 L29 17 L17 29 L5 17 Z' fill='none' stroke='%23f2a72c' stroke-width='2'/%3E%3Ccircle cx='17' cy='17' r='3.1' fill='%23f2a72c'/%3E%3C/svg%3E">
+<style>*,*::before,*::after{box-sizing:border-box}
+/* ── Tokens: byte-identical to index.html (see tokens.css) ─────────────── */
+:root{
+  --bg:#09090B; --bg-soft:#0E0E10; --panel:#131316; --panel-2:#18181B;
+  --border:rgba(255,255,255,.08); --border-2:rgba(255,255,255,.13);
+  --text:#FAFAFA; --muted:#A1A1AA; --faint:#71717A;
+  --radius:16px; --max:1120px;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono","Geist Mono",Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:16px}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(1100px 600px at 80% -10%, color-mix(in srgb,var(--accent) 10%, transparent), transparent 60%),
+  radial-gradient(900px 500px at -10% 10%, color-mix(in srgb,var(--accent-2) 8%, transparent), transparent 55%),
+  var(--bg);}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.accent{color:var(--accent)}
 
-  /* Docs shell */
-  .docs-shell{display:grid;grid-template-columns:250px 1fr;gap:34px;align-items:start;padding:36px 0 80px}
-  @media(max-width:860px){.docs-shell{grid-template-columns:1fr}}
-  .docs-nav{position:sticky;top:84px;border:1px solid var(--line);background:var(--ink-850);padding:16px 14px;position:relative}
-  .docs-nav::before{content:'';position:absolute;top:-1px;left:-1px;width:9px;height:9px;border-top:1px solid var(--signal);border-left:1px solid var(--signal)}
-  .docs-nav .label{font-size:10.5px;text-transform:uppercase;letter-spacing:.18em;color:var(--bone-faint);padding:4px 10px 12px}
-  .docs-nav a{display:block;padding:8px 11px;color:var(--bone-dim);font-size:13.5px;font-weight:500;transition:.15s;border-left:2px solid transparent}
-  .docs-nav a:hover{background:rgba(255,255,255,.03);color:var(--bone)}
-  .docs-nav a.active{background:color-mix(in srgb,var(--signal) 12%, transparent);color:var(--bone);border-left-color:var(--signal)}
-  @media(max-width:860px){.docs-nav{position:static}}
-  .docs-main{min-width:0}
-  .docs-title{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-faint);margin-bottom:10px}
-  .markdown{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;font-size:16px;color:#D8D4C8}
-  .markdown>*:first-child{margin-top:0}
-  .markdown h1{font-family:var(--disp);font-size:32px;letter-spacing:-.02em;margin:.2em 0 .5em;border-bottom:1px solid var(--line);padding-bottom:.3em;color:var(--bone)}
-  .markdown h2{font-family:var(--disp);font-size:23px;letter-spacing:-.01em;margin:1.6em 0 .6em;border-bottom:1px solid var(--line);padding-bottom:.25em;color:var(--bone)}
-  .markdown h3{font-family:var(--disp);font-size:18px;margin:1.4em 0 .5em;color:var(--bone)}
-  .markdown h4{font-size:15px;margin:1.3em 0 .4em;color:var(--bone)}
-  .markdown p,.markdown li{color:#D8D4C8}
-  .markdown strong{color:var(--bone)}
-  .markdown a{color:var(--signal);text-decoration:none}
-  .markdown a:hover{text-decoration:underline}
-  .markdown code{font-family:var(--mono);font-size:.86em;background:rgba(255,255,255,.06);padding:2px 6px;color:var(--bone)}
-  .markdown pre{background:var(--ink-900);border:1px solid var(--line-strong);padding:16px 18px;overflow:auto}
-  .markdown pre code{background:none;padding:0;font-size:13.5px;line-height:1.7;color:#D8D4C8}
-  .markdown blockquote{margin:1em 0;padding:.4em 1em;border-left:2px solid var(--signal);background:rgba(242,167,44,.04);color:var(--bone-dim)}
-  .markdown table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:14px;display:block;overflow:auto}
-  .markdown th,.markdown td{border:1px solid var(--line-strong);padding:9px 12px;text-align:left}
-  .markdown th{background:var(--ink-850);color:var(--bone);font-family:var(--disp);font-weight:700}
-  .markdown img{max-width:100%;border:1px solid var(--line);margin:1em 0}
-  .markdown hr{border:none;border-top:1px solid var(--line);margin:2em 0}
-  .docs-error{color:#ffb4a8;background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.25);padding:14px 16px}
+/* Header — identical to index.html so the two pages share one chrome. */
+.site-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 72%, transparent);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;gap:18px;height:64px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:600;font-size:18px;letter-spacing:-.03em}
+.brand .tile{width:34px;height:34px;border-radius:9px;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.12) inset, 0 4px 14px rgba(0,0,0,.35);background:#0E0E10;display:grid;place-items:center}
+.brand .tile svg{width:100%;height:100%;display:block}
+.nav-spacer{flex:1}
+.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links a{color:var(--muted);font-size:14.5px;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:var(--text)}
+.vulos-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--border-2);border-radius:999px;font-size:13px;color:var(--muted);transition:border-color .15s,color .15s}
+.vulos-badge:hover{border-color:var(--accent);color:var(--text)}
+.vulos-badge img{width:16px;height:16px;border-radius:4px}
+@media(max-width:760px){.nav-links{display:none}}
 
-  footer{border-top:1px solid var(--line);padding:46px 0;text-align:center;color:var(--bone-faint);font-size:12px}
-  footer b{color:var(--bone-dim)}
-  footer .flinks{display:flex;gap:18px;justify-content:center;margin-top:10px;flex-wrap:wrap}
-  footer .flinks a:hover{color:var(--bone-dim)}
+/* Footer */
+.site-footer{border-top:1px solid var(--border);margin-top:40px;padding:40px 0}
+.foot{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+.foot .left{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px}
+.foot .left img{width:20px;height:20px;border-radius:5px}
+.foot .links{display:flex;gap:20px;flex-wrap:wrap}
+.foot .links a{color:var(--muted);font-size:14px}
+.foot .links a:hover{color:var(--text)}
+
+/* Docs viewer */
+.docs-shell{display:grid;grid-template-columns:248px 1fr;gap:36px;align-items:start;padding:34px 0 70px}
+@media(max-width:860px){.docs-shell{grid-template-columns:1fr}}
+.docs-nav{position:sticky;top:84px;border:1px solid var(--border);border-radius:var(--radius);background:var(--panel);padding:14px}
+.docs-nav .label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);padding:6px 10px}
+.docs-nav a{display:block;padding:8px 11px;border-radius:9px;color:var(--muted);font-size:14.5px;font-weight:500;transition:.15s}
+.docs-nav a:hover{background:rgba(255,255,255,.04);color:var(--text)}
+.docs-nav a.active{background:color-mix(in srgb,var(--accent) 14%, transparent);color:var(--text)}
+@media(max-width:860px){.docs-nav{position:static}}
+.docs-main{min-width:0}
+.markdown{font-size:16px}
+.markdown>*:first-child{margin-top:0}
+.markdown h1{font-size:34px;letter-spacing:-.03em;margin:.2em 0 .5em;border-bottom:1px solid var(--border);padding-bottom:.3em}
+.markdown h2{font-size:25px;letter-spacing:-.02em;margin:1.6em 0 .6em;border-bottom:1px solid var(--border);padding-bottom:.25em}
+.markdown h3{font-size:19px;margin:1.4em 0 .5em}
+.markdown h4{font-size:16px;margin:1.3em 0 .4em;color:var(--text)}
+.markdown p,.markdown li{color:#D4D4D8}
+.markdown a{color:var(--accent);text-decoration:none}
+.markdown a:hover{text-decoration:underline}
+.markdown code{font-family:var(--mono);font-size:.88em;background:rgba(255,255,255,.07);padding:2px 6px;border-radius:6px}
+.markdown pre{background:#0C0C0E;border:1px solid var(--border-2);border-radius:12px;padding:16px 18px;overflow:auto}
+.markdown pre code{background:none;padding:0;font-size:13.5px;line-height:1.7;color:#D4D4D8}
+.markdown blockquote{margin:1em 0;padding:.4em 1em;border-left:3px solid var(--accent);background:rgba(255,255,255,.03);color:var(--muted);border-radius:0 8px 8px 0}
+.markdown table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:14.5px;display:block;overflow:auto}
+.markdown th,.markdown td{border:1px solid var(--border-2);padding:9px 12px;text-align:left}
+.markdown th{background:var(--panel);font-weight:600}
+.markdown img{border-radius:10px;margin:1em 0;border:1px solid var(--border)}
+.markdown hr{border:none;border-top:1px solid var(--border);margin:2em 0}
+.docs-title{font-size:13px;color:var(--faint);margin-bottom:6px}
+.docs-error{color:#FCA5A5;background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.25);padding:14px 16px;border-radius:10px}
 </style>
+<style>:root{--accent:#f2a72c;--accent-2:#C97C10}</style>
+<!-- The markdown renderer is VENDORED, never fetched from a CDN: a product
+     site must keep working with the network unplugged and must not leak a
+     reader's address to a third party. Copy marked.umd.js (and its LICENSE)
+     into ./assets/vendor/ from your package manager's cache, or leave this out
+     entirely — the page degrades to readable plain text below and says so. -->
 <script src="./assets/vendor/marked.umd.js"></script>
 </head>
 <body>
-<nav><div class="wrap">
-  <a class="brand" href="./index.html">
-    <svg viewBox="0 0 40 40" aria-label="Zana"><path d="M20 3 L37 20 L20 37 L3 20 Z" fill="none" stroke="#f2a72c" stroke-width="2.2"/><circle cx="20" cy="20" r="3.6" fill="#f2a72c"/></svg>
-    <b>ZANA</b>
-  </a>
-  <div class="nlinks">
-    <a class="hidem" href="./index.html#devices">Devices</a>
-    <a class="hidem" href="./index.html#how">How it works</a>
-    <a href="./docs.html">Docs</a>
-    <a class="btn" href="https://github.com/vul-os/zana" target="_blank" rel="noopener">GitHub</a>
-  </div>
-</div></nav>
-
+<header class="site-header"><div class="wrap nav">
+    <a class="brand" href="./index.html"><span class="tile">
+      <svg viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="34" height="34" rx="9" fill="#0E0E10"/>
+        <path d="M17 5 L29 17 L17 29 L5 17 Z" fill="none" stroke="#f2a72c" stroke-width="2"/>
+        <circle cx="17" cy="17" r="3.1" fill="#f2a72c"/>
+      </svg>
+    </span>Zana</a>
+    <div class="nav-spacer"></div>
+    <nav class="nav-links">
+      <a href="./index.html#devices">Devices</a>
+      <a href="./index.html#repo">In the repo</a>
+      <a href="./index.html#quickstart">Get the designs</a>
+      <a href="./docs.html">Docs</a>
+      <a href="https://github.com/vul-os/zana" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+    <a class="vulos-badge" href="https://vulos.org" target="_blank" rel="noopener" title="Part of Vulos">
+      <img src="./assets/vulos-logo.png" alt="Vulos">Part of Vulos
+    </a>
+  </div></header>
 <div class="wrap docs-shell">
   <aside class="docs-nav">
     <div class="label">Zana docs</div>
@@ -101,19 +124,19 @@
     <article class="markdown" id="content">Loading…</article>
   </main>
 </div>
-
-<footer><div class="wrap">
-  <div><a href="https://vulos.org"><b>vulos</b></a> — open by design · Zana designs are open-licensed</div>
-  <div class="flinks">
-    <a href="./index.html">Home</a>
-    <a href="./docs.html">Docs</a>
-    <a href="https://github.com/vul-os/zana" target="_blank" rel="noopener">GitHub</a>
-    <a href="./LICENSE" target="_blank" rel="noopener">License</a>
-  </div>
-</div></footer>
-
+<footer class="site-footer"><div class="wrap foot">
+    <div class="left"><img src="./assets/vulos-logo.png" alt="Vulos"> <span>Part of <a href="https://vulos.org" target="_blank" rel="noopener" style="color:var(--text)">Vulos</a> — open, self-hostable apps. Standalone by design.</span></div>
+    <div class="links">
+      <a href="./docs.html">Docs</a>
+      <a href="https://github.com/vul-os/zana" target="_blank" rel="noopener">GitHub</a>
+      <a href="./LICENSE.txt">License</a>
+      <a href="https://vulos.org" target="_blank" rel="noopener">vulos.org</a>
+    </div>
+  </div></footer>
 <script>
-// The site is served statically; docs render straight from this repo's own markdown.
+// The docs render straight from the repo's OWN markdown — the same files a
+// reader sees on GitHub. There is no build step and no second copy to drift.
+// The sidebar above carries a matching data-slug per row.
 const DOCS = [
   {"slug":"overview","title":"Overview","path":"./docs/overview.md"},
   {"slug":"getting-started","title":"Getting started","path":"./docs/getting-started.md"},
@@ -124,11 +147,21 @@ const bySlug = Object.fromEntries(DOCS.map(d=>[d.slug,d]));
 const byFile = Object.fromEntries(DOCS.map(d=>[d.path.split('/').pop().toLowerCase(),d]));
 const content = document.getElementById('content');
 const crumb = document.getElementById('crumb');
+const hasMarked = !!(window.marked && marked.parse);
 
-if (window.marked && marked.setOptions) marked.setOptions({ gfm:true, breaks:false });
+if (hasMarked && marked.setOptions) marked.setOptions({ gfm:true, breaks:false });
 
 function setActive(slug){
   document.querySelectorAll('.docs-nav a').forEach(a=>a.classList.toggle('active', a.dataset.slug===slug));
+}
+
+// No vendored renderer? Say so out loud and show the raw markdown rather than
+// rendering a blank page — a silent empty docs site is the failure we refuse.
+function escapeHtml(s){ return s.replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function renderPlain(md, path){
+  return '<div class="docs-error">Markdown renderer not vendored — showing <code>'+escapeHtml(path)+'</code> as plain text. '
+       + 'Copy <code>marked.umd.js</code> into <code>./assets/vendor/</code> to render it.</div>'
+       + '<pre><code>'+escapeHtml(md)+'</code></pre>';
 }
 
 async function load(slug){
@@ -140,8 +173,8 @@ async function load(slug){
     const res = await fetch(doc.path, {cache:'no-cache'});
     if(!res.ok) throw new Error('HTTP '+res.status);
     const md = await res.text();
-    content.innerHTML = marked.parse(md);
-    // Cross-doc links become sidebar navigation.
+    content.innerHTML = hasMarked ? marked.parse(md) : renderPlain(md, doc.path);
+    // Cross-doc links (api.md, ../roadmap.md#phase-4) become sidebar navigation.
     content.querySelectorAll('a[href]').forEach(a=>{
       const h=a.getAttribute('href')||'';
       if(/^(https?:|#|mailto:)/i.test(h)) return;
@@ -152,7 +185,7 @@ async function load(slug){
     content.querySelectorAll('a[href^="http"]').forEach(a=>{a.target='_blank';a.rel='noopener';});
     window.scrollTo({top:0});
   } catch(err){
-    content.innerHTML = '<div class="docs-error">Could not load <code>'+doc.path.split('/').pop()+'</code> — '+err.message+'</div>';
+    content.innerHTML = '<div class="docs-error">Could not load <code>'+escapeHtml(doc.path.split('/').pop())+'</code> — '+escapeHtml(err.message)+'</div>';
   }
 }
 

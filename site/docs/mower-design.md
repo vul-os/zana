@@ -28,18 +28,38 @@ design.
 
 ## Wireless charging
 
-`mower/coil-study/` holds the coil design and efficiency analysis for the
-mower's inductive charging system — a Python physics/benchmark suite plus the
-generated plots (efficiency vs. gap, frequency vs. efficiency, coil aspect
-ratio comparisons, and more). It covers transmitter/receiver coil sizing and
-the tradeoffs between coil geometry, air gap, and charging efficiency.
+`mower/coil-study/` holds the model behind the mower's inductive charging
+dock, and it is the one part of `mower/` that is executable code rather than
+CAD. `physics.py` computes mutual inductance between coaxial loops from
+complete elliptic integrals, sums self-inductance segment by segment for
+planar and stacked coils, adds AC resistance with skin and proximity effects,
+and solves link efficiency from `k·Q`. `benchmark.py` sweeps that model over
+gap, frequency, voltage and coil aspect ratio and emits printable A3/A4
+winding templates.
+
+`coil-study/DESIGN_SUMMARY.md` writes up three candidate coils for a 200 mm-ID,
+40 kHz, 40 mm-air-gap link — the recommendation is two stacked layers of 8
+turns, 91.5 % link efficiency at 223.8 mm outer diameter. Those figures are
+not decoration: the repo's test suite parses the comparison table back out of
+that markdown and re-derives every cell from `physics.py`, so the write-up and
+the model cannot drift apart silently.
+
+Two plots are tracked (`Single_Layer_8Turns_A3.png`,
+`Efficiency_vs_AirGap_Comparison.png`); the rest of the sweeps are regenerable
+output and are deliberately not committed.
 
 ## Simulator
 
-`mower/simulator/` is an early physics simulator for the mower (`mowbot_sim`)
-— a C++ implementation that builds natively or to WASM (`build_wasm.sh`,
-`shell.html`), plus a Python prototype. It shares mesh assets with the main
-mower design rather than duplicating them.
+`mower/simulator/` holds sources for a driving-over-grass simulation, written
+twice: C++ on raylib + Bullet with an Emscripten/WASM target (`cpp/`), and an
+earlier PyBullet prototype (`python/`).
+
+> **It is source only.** Nothing builds it, nothing tests it, and CI does not
+> compile it. It also loads a mesh called `mowbot.stl` that is not checked in
+> anywhere — the chassis meshes are named `mowbot4-Body.stl` and so on — and
+> the WASM build script still has `path/to/raylib` placeholders. Treat it as a
+> sketch to pick up, not a tool to use. `simulator/README.md` lists exactly
+> what it would take to get it running.
 
 ## Electronics
 

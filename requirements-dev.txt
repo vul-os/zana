@@ -1,0 +1,7 @@
+# Everything the gates in tests/ need. Nothing else — the repo itself is CAD
+# and PCB sources with no build step.
+#
+# matplotlib is deliberately NOT here: it is only needed to regenerate the
+# coil-study plots (`python3 mower/coil-study/main.py`), never to run a test.
+numpy>=1.24
+pytest>=7.4

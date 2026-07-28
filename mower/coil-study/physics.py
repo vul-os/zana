@@ -1,5 +1,11 @@
 import numpy as np
 
+# NumPy 2.0 renamed trapz -> trapezoid and deprecated the old spelling; it is
+# scheduled for removal. Identical function, so the numbers do not move —
+# tests/test_coil_physics.py re-derives DESIGN_SUMMARY.md and would catch it if
+# they did.
+_trapezoid = getattr(np, "trapezoid", None) or np.trapz
+
 def ellipk(k):
     """Complete Elliptic Integral of the First Kind K(k) using AGM."""
     a, b = 1.0, np.sqrt(1 - k**2)
@@ -10,7 +16,7 @@ def ellipk(k):
 def ellipe(k):
     """Complete Elliptic Integral of the Second Kind E(k)."""
     theta = np.linspace(0, np.pi/2, 1000)
-    return np.trapz(np.sqrt(1 - k**2 * np.sin(theta)**2), theta)
+    return _trapezoid(np.sqrt(1 - k**2 * np.sin(theta)**2), theta)
 
 def mutual_loops(r1, r2, z):
     """Exact Mutual Inductance between two coaxial circular loops (Maxwell)."""

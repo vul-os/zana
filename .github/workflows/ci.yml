@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gates:
+    name: gates (python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # tests/conftest.py enumerates the repo with `git ls-files` and fails
+          # closed if that returns a partial set, so the checkout must be whole.
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Show what is being gated
+        run: |
+          echo "tracked files: $(git ls-files | wc -l)"
+          echo "python files:  $(git ls-files '*.py' | wc -l)"
+          echo "shell scripts: $(git ls-files '*.sh' | wc -l)"
+          echo "markdown:      $(git ls-files '*.md' | wc -l)"
+
+      - name: Run the gates
+        run: python -m pytest -v
+
+      # The coil study is the only executable design work in the repo; if its
+      # entry point stops running, the plots in mower/coil-study/ can no longer
+      # be regenerated and the design write-up becomes unverifiable by hand.
+      - name: Coil study entry point still runs
+        run: |
+          pip install matplotlib
+          cd mower/coil-study
+          MPLBACKEND=Agg python3 main.py
+          test -s Single_Layer_8Turns_A3.png
+          test -s Efficiency_vs_AirGap_Comparison.png
+          git diff --stat -- .
+
+      - name: No design file was modified by running the gates
+        run: |
+          # A gate that mutates the repo is a gate that cannot be trusted twice.
+          # main.py legitimately rewrites its two tracked plots; nothing else may move.
+          changed=$(git status --porcelain -- . ':!mower/coil-study/*.png' | tee /dev/stderr)
+          test -z "$changed"

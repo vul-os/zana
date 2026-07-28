@@ -11,20 +11,33 @@ but the designs are open and vendor-neutral, so they work with any compatible
 control plane.
 
 > **Status: prototype-stage reference designs.** The first device — an
-> autonomous **mower** — is here as CAD, PCB, and firmware-adjacent work
-> recovered from active prototyping. It is not yet a finished, documented,
-> buy-the-parts build.
+> autonomous **mower** — is here as CAD and PCB work recovered from active
+> prototyping, plus one executable engineering study. There is **no firmware
+> in this repo**, no bill of materials and no assembly guide. It is not yet a
+> finished, documented, buy-the-parts build.
 
 ## What's here
 
-| Area | Contents |
-|---|---|
-| **Chassis & body** | FreeCAD bodies across iterations (`mower/mowbot*.FCStd`), wheels, moulds, motor supports |
-| **Drivetrain** | Shafts, couplers (including an aluminium variant), GT2 pulley, castor fitting |
-| **Electronics (KiCad)** | `TRANSMITTER` (thru-hole + SMD), `MAINBOARD`, `EMF_SENSOR`, `RAIN` sensor, shared `IMRANS_LIBRARY` symbols |
-| **Wireless power** | `mower/coil-study/` — coil design and efficiency study (Python physics + plots) for inductive charging |
-| **Simulator** | `mower/simulator/` — a mowbot physics simulator (C++ native/WASM + Python) |
-| **Fabrication rigs** | Coil winder, PCB mill, and UV exposure box used to build the electronics |
+| Area | Contents | State |
+|---|---|---|
+| **Chassis & body** | FreeCAD bodies across four iterations (`mower/mowbot*.FCStd`), wheels, moulds, motor supports | design files |
+| **Drivetrain** | Shafts, couplers (including an aluminium variant), GT2 pulley, castor fitting | design files |
+| **Electronics (KiCad)** | `TRANSMITTER` (thru-hole + SMD), `MAINBOARD`, `EMF_SENSOR`, `RAIN` sensor, shared `IMRANS_LIBRARY` symbols | design files |
+| **Wireless power** | `mower/coil-study/` — an inductance/efficiency model for the inductive charging link, in Python | runs; covered by tests |
+| **Simulator** | `mower/simulator/` — C++ (raylib + Bullet, native and WASM) and PyBullet sources for a driving-over-grass sim | source only — not built, not tested |
+| **Fabrication rigs** | Coil winder, PCB mill, and UV exposure box used to build the electronics | design files |
+
+## What is checked
+
+Most of a hardware repo is binaries no build server can meaningfully verify.
+What *is* checkable is checked on every push, by three gates that each assert
+their own coverage count so none of them can pass by doing nothing:
+
+- the numbers in the coil study's design write-up are re-derived from the model;
+- every path named in a README or doc exists, no tracked file is empty, every
+  script parses;
+- this site carries the Vulos token block, badge, band and footer, every local
+  link resolves, and no page fetches anything off-box.
 
 ## What Zana is not
 

@@ -57,6 +57,26 @@ source files, not a local `.FCBak`.
    [Aql](https://github.com/vul-os/aql), the open-source command centre — but
    nothing here is locked to it. See [Runs on Aql](#aql).
 
+## Running the checks
+
+Nothing in this repo needs building, but the parts that *can* be verified are,
+and you can run the same gates CI runs:
+
+```bash
+pip install -r requirements-dev.txt
+python3 -m pytest -q
+```
+
+That re-derives the charging-coil design from its model, checks that every
+path named in a README or doc exists and that no tracked file is empty, and
+checks this site's markup. Roughly four seconds; no network access.
+
+To regenerate the coil-study plots you also need matplotlib:
+
+```bash
+cd mower/coil-study && python3 main.py
+```
+
 ## Honest status
 
 This is prototype-stage reference material recovered from active

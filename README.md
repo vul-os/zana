@@ -12,6 +12,7 @@
   <a href="#whats-here">What's here</a> ·
   <a href="#the-mower">The mower</a> ·
   <a href="#build-it">Build it</a> ·
+  <a href="#checks">Checks</a> ·
   <a href="#ecosystem">Ecosystem</a>
 </p>
 
@@ -24,28 +25,43 @@
 Zana is the **body** to [**Aql**](https://github.com/vul-os/aql)'s brain: every device is meant to drop straight into Aql, the open-source command center — but the designs are open and vendor-neutral, so they work with any compatible control plane.
 
 > [!NOTE]
-> **Status: prototype-stage reference designs.** The first device — an autonomous **mower** — is here as CAD, PCB, and firmware-adjacent work recovered from active prototyping. It is not yet a finished, documented, buy-the-parts build.
+> **Status: prototype-stage reference designs.** The first device — an autonomous **mower** — is here as CAD and PCB work recovered from active prototyping, plus one executable engineering study. There is **no firmware in this repo**, no bill of materials and no assembly guide. It is not yet a finished, documented, buy-the-parts build.
 
 ## What's here
 
-| Area | Contents |
-|---|---|
-| **Chassis & body** | FreeCAD bodies across iterations (`mower/mowbot*.FCStd`), wheels, molds, motor supports |
-| **Drivetrain** | Shafts, couplers (incl. aluminium variant), GT2 pulley, castor fitting |
-| **Electronics (KiCad)** | `TRANSMITTER` (thru-hole + SMD), `MAINBOARD`, `EMF_SENSOR`, `RAIN` sensor, shared `IMRANS_LIBRARY` symbols |
-| **Wireless power** | `mower/coil-study/` — coil design & efficiency study (Python physics + plots) for inductive charging |
-| **Simulator** | `mower/simulator/` — a mowbot physics simulator (C++ native/WASM + Python) |
-| **Fabrication rigs** | Coil winder, PCB mill, and UV exposure box used to build the electronics |
+| Area | Contents | State |
+|---|---|---|
+| **Chassis & body** | FreeCAD bodies across four iterations (`mower/mowbot*.FCStd`), wheels, moulds, motor supports | design files |
+| **Drivetrain** | Shafts, couplers (incl. an aluminium variant), GT2 pulley, castor fitting | design files |
+| **Electronics (KiCad)** | `TRANSMITTER` (thru-hole + SMD), `MAINBOARD`, `EMF_SENSOR`, `RAIN` sensor, shared `IMRANS_LIBRARY` symbols | design files |
+| **Wireless power** | [`mower/coil-study/`](mower/coil-study/README.md) — an inductance/efficiency model for the charging link, in Python | **runs; covered by tests** |
+| **Simulator** | [`mower/simulator/`](mower/simulator/README.md) — C++ (raylib + Bullet, native and WASM) and PyBullet sources for a driving-over-grass sim | **source only — not built, not tested, needs a mesh that isn't checked in** |
+| **Fabrication rigs** | Coil winder, PCB mill, and UV exposure box used to build the electronics | design files |
 
 ## The mower
 
 The flagship Zana device — an autonomous robot mower with inductive charging. See [`mower/README.md`](mower/README.md) for the full parts breakdown.
 
-**Formats:** `.FCStd` (FreeCAD source — edit these) · `.3mf` / `.stl` (print) · `.step` (neutral CAD) · `.kicad_*` (electronics). FreeCAD/KiCad auto-backups are gitignored — edit the source files.
+**Formats:** `.FCStd` (FreeCAD source — edit these) · `.3mf` / `.stl` (print) · `.step` (neutral CAD) · `.dxf` / `.svg` (2D profiles) · `.kicad_*` (electronics). FreeCAD/KiCad auto-backups are gitignored — edit the source files.
 
 ## Build it
 
 You'll want [FreeCAD](https://www.freecad.org/) for the mechanical design, [KiCad](https://www.kicad.org/) for the boards, and a 3D printer for the printable parts. Open the `.FCStd` files in `mower/`, the KiCad projects in `mower/PCB/`, and slice the `.3mf`/`.stl` meshes for your printer.
+
+## Checks
+
+Most of this repo is CAD and PCB binaries that no CI can meaningfully verify. What *is* checkable is checked, and [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs it on every push:
+
+```sh
+pip install -r requirements-dev.txt
+python3 -m pytest -q
+```
+
+Three gates, each asserting its own coverage count so it cannot pass by doing nothing:
+
+- **`tests/test_coil_physics.py`** — re-derives every number in `mower/coil-study/DESIGN_SUMMARY.md` from `physics.py`, and checks the model's own invariants (reciprocity, monotonicity, efficiency bounds).
+- **`tests/test_repo_integrity.py`** — every path named in a README or doc exists; no tracked file is zero bytes; every shell script parses; every Python file compiles.
+- **`tests/test_site.py`** — `site/` carries the Vulos product-site token block, badge, band and footer, every local link resolves, and no page fetches anything off-box.
 
 ## Ecosystem
 
