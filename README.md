@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/brand/mark.svg" alt="" width="76">
+  <img src="brand/logo.svg" alt="" width="76">
 </p>
 
 <h1 align="center">zana</h1>
@@ -168,6 +168,16 @@ that disagrees with it, so the captions cannot rot.
 - **Zana** — the body (this repo): the open hardware Aql commands.
 
 Zana devices work with any compatible control plane, and run best on Aql.
+
+## Brand
+
+The mark in [`brand/`](brand/) is the source of truth. Every icon this repo
+ships — favicon, PWA and app icons, the mark in the README and on the site — is
+rendered from `brand/logo.svg` rather than redrawn, so there is one approved
+drawing and no second copy to drift.
+
+Copy it outward, never edit a derived copy, and never edit `brand/` to match
+something downstream.
 
 ## License
 
