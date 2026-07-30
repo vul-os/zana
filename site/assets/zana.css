@@ -191,7 +191,7 @@ img, svg { display: block; max-width: 100%; height: auto; }
 /* Every label on a drawing is uppercase, tracked out, and small. */
 .lbl {
   font-family: var(--mono);
-  font-size: 10.5px; font-weight: 500;
+  font-size: 12px; font-weight: 500;
   letter-spacing: .16em; text-transform: uppercase;
   color: var(--text-4); line-height: 1;
 }
@@ -349,7 +349,7 @@ code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
 .dim { position: relative; display: flex; align-items: center; gap: 10px; color: var(--info); }
 .dim::before, .dim::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: .5; }
 .dim b {
-  font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .06em;
+  font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .06em;
   white-space: nowrap; color: var(--info);
 }
 .dim.v { flex-direction: column; width: 1px; }
@@ -369,7 +369,7 @@ code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
 .tb { padding: 11px 13px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); min-width: 0; }
 .tb:nth-child(4n) { border-right: none; }
 .tb:nth-last-child(-n+4) { border-bottom: none; }
-.tb .k { display: block; font-size: 9.5px; letter-spacing: .15em; text-transform: uppercase; color: var(--text-5); margin-bottom: 6px; }
+.tb .k { display: block; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; color: var(--text-5); margin-bottom: 6px; }
 .tb .v { font-size: 13px; font-weight: 500; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tb .v.cu { color: var(--accent); }
 @media (max-width: 700px) {
@@ -387,7 +387,7 @@ code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
   display: inline-flex; align-items: center; gap: 7px; flex: none;
   padding: 4px 10px; border-radius: 100px;
   border: 1px solid var(--line-2);
-  font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+  font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
   color: var(--text-3); white-space: nowrap;
 }
 .chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
@@ -401,7 +401,7 @@ code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
 .inv th {
   text-align: left; padding: 11px 14px;
   border-bottom: 1px solid var(--line-2);
-  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
   letter-spacing: .15em; text-transform: uppercase; color: var(--text-4); white-space: nowrap;
 }
 .inv td { padding: 15px 14px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--text-3); }
@@ -435,7 +435,7 @@ code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
 .part .spec {
   display: flex; flex-wrap: wrap; gap: 6px 14px; padding-top: 10px;
   border-top: 1px solid var(--line);
-  font-family: var(--mono); font-size: 11px; color: var(--text-4);
+  font-family: var(--mono); font-size: 12px; color: var(--text-4);
 }
 .part .spec b { color: var(--info); font-weight: 500; }
 
@@ -485,7 +485,7 @@ code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
 .codeblock .bar {
   display: flex; align-items: center; gap: 10px;
   padding: 9px 13px; background: var(--panel-2); border-bottom: 1px solid var(--line);
-  font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-4);
+  font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-4);
 }
 .codeblock .bar::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none; }
 .codeblock pre { margin: 0; padding: 16px 18px; overflow-x: auto; font-family: var(--mono); font-size: 12.5px; line-height: 1.8; color: var(--text-2); }
@@ -546,7 +546,7 @@ code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
 .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-top: 13px; }
 .foot-col a { font-size: 13.5px; color: var(--text-4); transition: color .15s var(--ease); }
 .foot-col a:hover { color: var(--accent); }
-.foot-btm { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 24px; font-family: var(--mono); font-size: 11.5px; color: var(--text-5); }
+.foot-btm { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 24px; font-family: var(--mono); font-size: 12px; color: var(--text-5); }
 .foot-btm a { color: var(--text-4); }
 .foot-btm a:hover { color: var(--text-2); }
 @media (max-width: 700px) { .foot-grid { grid-template-columns: 1fr; } }
@@ -597,14 +597,14 @@ code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
 .markdown li { position: relative; padding-left: 24px; margin: 8px 0; color: var(--text-3); line-height: 1.7; max-width: 74ch; }
 .markdown ul > li::before { content: ""; position: absolute; left: 3px; top: .56em; width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--accent); }
 .markdown ol > li { counter-increment: md; }
-.markdown ol > li::before { content: counter(md, decimal-leading-zero); position: absolute; left: 0; top: 0; font-family: var(--mono); font-size: 11.5px; color: var(--accent); }
+.markdown ol > li::before { content: counter(md, decimal-leading-zero); position: absolute; left: 0; top: 0; font-family: var(--mono); font-size: 12px; color: var(--accent); }
 .markdown code { font-family: var(--mono); font-size: .86em; color: var(--accent); background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-xs); padding: 1px 6px; }
 .markdown pre { position: relative; margin: 16px 0; padding: 15px 17px; overflow-x: auto; background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--r); font-family: var(--mono); font-size: 12.5px; line-height: 1.75; color: var(--text-2); }
 .markdown pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
 .markdown blockquote { margin: 16px 0; padding: 2px 0 2px 17px; border-left: 2px solid var(--accent); color: var(--text-4); }
 .markdown table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; display: block; overflow-x: auto; }
 .markdown th, .markdown td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.markdown th { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--text-4); white-space: nowrap; }
+.markdown th { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--text-4); white-space: nowrap; }
 .markdown td { color: var(--text-3); }
 .markdown tbody tr:last-child td { border-bottom: none; }
 .markdown hr { border: none; height: 1px; background: var(--line); margin: 34px 0; }
@@ -614,7 +614,7 @@ code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
 .copy-btn {
   position: absolute; top: 7px; right: 7px;
   background: var(--panel-2); border: 1px solid var(--line-2); border-radius: var(--r-xs);
-  color: var(--text-4); font-family: var(--mono); font-size: 10px; padding: 3px 8px; cursor: pointer;
+  color: var(--text-4); font-family: var(--mono); font-size: 12px; padding: 3px 8px; cursor: pointer;
   opacity: 0; transition: opacity .15s var(--ease), color .15s var(--ease), border-color .15s var(--ease);
 }
 .markdown pre:hover .copy-btn, .copy-btn:focus-visible { opacity: 1; }
@@ -627,7 +627,12 @@ code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
 }
 
 @media (max-width: 980px) {
-  .docs-shell { grid-template-columns: 1fr; }
+  /* minmax(0, 1fr), not 1fr: a bare 1fr track's automatic minimum is its
+     content's min-content width, so the horizontal tab strip below (and
+     docs-main) could force the single grid column wider than the viewport.
+     html's overflow-x: clip was then silently truncating the last tab
+     instead of the strip actually fitting and scrolling. */
+  .docs-shell { grid-template-columns: minmax(0, 1fr); }
   .docs-nav {
     position: static; max-height: none; overflow-y: visible; overflow-x: auto;
     flex-direction: row; align-items: center; gap: 3px;
