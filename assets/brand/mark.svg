@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"
-     width="64" height="64" role="img" aria-label="Zana">
-  <polygon points="58,32 45,54.52 19,54.52 6,32 19,9.48 45,9.48"
-           fill="none" stroke="#f2a72c" stroke-width="5"
-           stroke-linejoin="round"/>
-  <polyline points="22.5,22.5 41.5,22.5 22.5,41.5 41.5,41.5"
-            fill="none" stroke="#f7f4ec" stroke-width="4.2"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="Zana">
+  <title>Zana</title>
+  <rect width="128" height="128" rx="28" fill="#14110b"/>
+  <polygon points="116,64 90,109.04 38,109.04 12,64 38,18.96 90,18.96"
+           fill="none" stroke="#f2a72c" stroke-width="9" stroke-linejoin="round"/>
+  <polyline points="45,45 83,45 45,83 83,83"
+            fill="none" stroke="#f7f4ec" stroke-width="8"
             stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="22.5" cy="22.5" r="3.3" fill="#f7f4ec"/>
-  <circle cx="41.5" cy="41.5" r="3.3" fill="#f7f4ec"/>
+  <circle cx="45" cy="45" r="6.2" fill="#f7f4ec"/>
+  <circle cx="83" cy="83" r="6.2" fill="#f7f4ec"/>
 </svg>
