@@ -280,16 +280,6 @@ code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
 }
 .icon-btn:hover { color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
 
-.vulos-badge {
-  display: inline-flex; align-items: center; gap: 8px; flex: none;
-  padding: 6px 12px; border: 1px solid var(--line-2); border-radius: var(--r-sm);
-  font-size: 12.5px; color: var(--text-3);
-  transition: border-color .18s var(--ease), color .18s var(--ease);
-}
-.vulos-badge:hover { border-color: var(--line-3); color: var(--text); }
-.vulos-badge img { width: 15px; height: 15px; border-radius: 3px; }
-@media (max-width: 620px) { .vulos-badge span { display: none; } }
-
 /* ═══ buttons ══════════════════════════════════════════════════════════ */
 .btn {
   display: inline-flex; align-items: center; gap: 9px;
@@ -514,19 +504,7 @@ code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
 }
 .card:hover { border-color: var(--line-3); transform: translateY(-2px); }
 .card h3 { font-size: 1.02rem; }
-.card p { font-size: 13.5px; line-height: 1.6; color: var(--text-4); }
-
-/* ═══ the standalone band ══════════════════════════════════════════════ */
-.vulos-band {
-  border: 1px solid var(--line-2); border-radius: var(--r);
-  background: var(--panel); padding: clamp(22px, 3vw, 32px);
-  display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px;
-}
-.vulos-band .txt { flex: 1 1 340px; }
-.vulos-band h3 { margin-bottom: 8px; }
-.vulos-band p { font-size: 14.5px; line-height: 1.65; }
-
-/* ═══ quick facts strip ════════════════════════════════════════════════ */
+.card p { font-size: 13.5px; line-height: 1.6; color: var(--text-4); }/* ═══ quick facts strip ════════════════════════════════════════════════ */
 .quick { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line-2); }
 .quick > div { padding: 15px 14px 0 0; position: relative; display: flex; flex-direction: column; gap: 7px; }
 .quick > div + div { padding-left: 18px; border-left: 1px solid var(--line); }
@@ -643,3 +621,14 @@ code { font-family: var(--mono); font-size: .875em; color: var(--accent); }
   .docs-nav a.active { border-left: none; border-bottom: 2px solid var(--accent); }
   .docs-main { max-width: none; }
 }
+
+/* ── Vulos suite chrome — identical on every product landing ───────────────
+   Two elements, and only two: a logo-only home button in the top bar, and
+   one line in the footer. Deliberately free of repo variables so the block
+   is byte-identical across the suite and can be diffed as one thing. */
+.vulos-home { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 9px; flex: 0 0 auto; opacity: .72; transition: opacity .15s ease, transform .15s ease; }
+.vulos-home:hover, .vulos-home:focus-visible { opacity: 1; transform: translateY(-1px); }
+.vulos-home img { display: block; width: 22px; height: 22px; border-radius: 6px; }
+.vulos-foot { display: inline-flex; align-items: center; gap: 9px; font-size: 13.5px; line-height: 1.45; text-decoration: none; color: inherit; opacity: .85; transition: opacity .15s ease; }
+.vulos-foot:hover { opacity: 1; text-decoration: none; }
+.vulos-foot img { display: block; width: 18px; height: 18px; border-radius: 5px; flex: 0 0 auto; }
