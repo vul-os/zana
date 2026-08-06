@@ -1,8 +1,11 @@
 """Gates on site/ — Zana's product mini-site.
 
 `site/` is copied verbatim into vulos.org by
-`vulos-static/scripts/collect-repo-landings.mjs` and framed at /products/zana.
-Nothing on the other side checks it, so this file does.
+`vulos-cloud/scripts/collect-repo-landings.mjs` and framed at /products/zana.
+Chrome conformance across the whole suite is separately checked by
+`vulos-cloud/scripts/check-suite-chrome.mjs`, which this file's header/footer
+tests below track. Nothing on the other side checks the rest, so this file
+does.
 
 WHAT CHANGED, AND WHY: this suite used to assert that the pages carried the
 shared product-site template byte-for-byte — a ratified 13-token `:root` block,
@@ -17,8 +20,10 @@ they are the ones that matter across repos:
 
   * self-containment — the page must render with the network unplugged,
   * resolvability — every local path must survive the copy,
-  * attribution — the Vulos badge, the standalone-promise band, and the shared
-    footer line.
+  * attribution — the Vulos mark in the header (.vulos-home, on both pages),
+    the standalone-promise band (landing only, and free of the word "Vulos"
+    itself — see check-suite-chrome.mjs rule 3), and the shared .vulos-foot
+    footer line (landing only — docs.html carries no footer at all).
 
 And three new gates protect what is specific to a hardware repo: the page must
 not quote a dimension the mesh does not have, it must not overstate what is
@@ -55,10 +60,16 @@ SPEC_COLOURS = {
 # shipping it would mean the accent was never set.
 PLACEHOLDER_ACCENT = "#5B8DEF"
 
-# DESIGN_SYSTEM.md: the sentence every conforming product site shares.
+# vulos-cloud/scripts/check-suite-chrome.mjs ("the canonical chrome check", run
+# fleet-wide over every product's site/): a landing's footer must carry exactly
+# one `.vulos-foot` line, byte-identical across the suite. This is that line,
+# as it reads on 27 sibling landings (beepbite, lilmail, wede, diwan, patala,
+# openrate, …) and, since commit 89b7d7a, on zana's too. Landing-only — see
+# test_docs_page_carries_no_footer for why docs.html has none at all.
 FOOTER_INVARIANT = (
-    'Part of <a href="https://vulos.org" target="_blank" rel="noopener" '
-    'style="color:var(--text)">Vulos</a> — open, self-hostable apps.'
+    '<a class="vulos-foot" href="https://vulos.org" target="_blank" rel="noopener">'
+    '<img src="./assets/vulos-logo.png" alt="" width="18" height="18">'
+    '<span>Part of <strong>Vulos</strong> — open, self-hostable software</span></a>'
 )
 
 
@@ -151,30 +162,66 @@ def test_page_applies_the_stored_theme_before_first_paint(page):
 
 
 @pytest.mark.parametrize("page", PAGES)
-def test_header_carries_the_vulos_badge(page):
+def test_header_carries_the_vulos_home(page):
+    """The suite renamed this element .vulos-badge -> .vulos-home in commit
+    89b7d7a ("site: one Vulos mark in the top bar, one line in the footer"),
+    per vulos-cloud/scripts/check-suite-chrome.mjs rule 1: a logo-only link to
+    vulos.org, identical on every landing AND its docs page (a reader clicking
+    "Docs" must not watch the mark change shape). This test used to look for
+    the retired .vulos-badge class and had been red since that rename — a case
+    of the site moving to the newer fleet standard while this test kept
+    checking the older one.
+    """
     html = read(page)
-    assert re.search(r'<a class="vulos-badge"[^>]*href="https://vulos\.org"', html), (
-        f"site/{page} is missing the .vulos-badge link to vulos.org"
+    assert re.search(r'<a class="vulos-home"[^>]*href="https://vulos\.org"', html), (
+        f"site/{page} is missing the .vulos-home link to vulos.org"
     )
     assert 'src="./assets/vulos-logo.png"' in html
 
 
 def test_landing_carries_the_standalone_band():
+    """check-suite-chrome.mjs rule 3 forbids the word "Vulos" appearing
+    anywhere in the visible body outside the sanctioned .vulos-home/.vulos-foot
+    elements — "no band, no eyebrow, no pill, no second footer link" (mjs
+    header comment). Commit 89b7d7a reworded this band's promise from "never
+    requires Vulos infrastructure to run" to "never requires any other
+    software to run" specifically to drop that stray mention while keeping the
+    promise itself true. This test still checked the pre-rule-3 wording.
+    """
     html = read("index.html")
     m = re.search(r'class="[^"]*\bvulos-band\b[^"]*"', html)
     assert m, "index.html is missing the .vulos-band section"
     band = html[m.end():m.end() + 1400]
-    assert "never requires Vulos infrastructure to run" in band, (
+    assert "never requires any other software to run" in band, (
         "the band no longer states the standalone promise — that sentence is the "
         "point of the band, and it has to stay true of the repo"
     )
-
-
-@pytest.mark.parametrize("page", PAGES)
-def test_footer_invariant(page):
-    assert FOOTER_INVARIANT in read(page), (
-        f"site/{page}'s footer line differs from the one every conforming site shares"
+    # band starts after the `class="vulos-band ..."` attribute itself, so this
+    # only sees the element's visible content.
+    assert "vulos" not in band.lower(), (
+        "the band's body text mentions Vulos — forbidden by check-suite-chrome.mjs "
+        "rule 3, which allows the word only inside .vulos-home/.vulos-foot"
     )
+
+
+def test_footer_invariant():
+    """Landing-only. See test_docs_page_carries_no_footer for docs.html."""
+    assert FOOTER_INVARIANT in read("index.html"), (
+        "site/index.html's footer line differs from the one every conforming site shares"
+    )
+
+
+def test_docs_page_carries_no_footer():
+    """Docs standard (2026-08-02, commits 466521b/5335453): docs.html shares
+    the landing's header chrome but carries NO footer at all — enforced
+    fleet-wide by check-suite-chrome.mjs's `forbidFooter` rule for docs pages.
+    A one-line footer stub down there read as a broken element rather than
+    chrome, so it was removed rather than merely tolerated; this pins that it
+    cannot drift back in unnoticed.
+    """
+    html = read("docs.html")
+    assert "<footer" not in html, "site/docs.html has a <footer> — docs pages carry none"
+    assert "vulos-foot" not in html, "site/docs.html has a .vulos-foot line — docs pages carry no footer"
 
 
 # ── Self-containment ────────────────────────────────────────────────────────
