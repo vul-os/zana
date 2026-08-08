@@ -20,7 +20,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.10", "3.13"]
+        # 3.11 is the floor, not 3.10: requirements-dev.txt pins numpy 2.3.5,
+        # and every numpy 2.3.x declares Requires-Python >=3.11. The 3.10 job
+        # could therefore never install its dependencies — it failed at pip,
+        # before running a single gate, so this matrix entry was reporting a
+        # red build for an environment nothing here needs. The repo is CAD and
+        # PCB sources with no build step and no packaging metadata, so nothing
+        # declares support for 3.10 either.
+        #
+        # Loosening the numpy pin instead was the alternative and was not
+        # taken: these are reproducibility gates, and an exact pin is the
+        # point of the file.
+        python: ["3.11", "3.13"]
     steps:
       - uses: actions/checkout@v4
         with:
